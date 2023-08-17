@@ -45,21 +45,11 @@
                                                 <thead>
                                                     <tr>
                                                         <th>SL</th>
-                                                        <th>Category</th>
-                                                        <th>Subcategory</th>
-                                                        <th>Brand</th>
-                                                        <th>Unit</th>
                                                         <th>Product Name</th>
-                                                        <th>Product Code</th>
+                                                        <th>Brand</th>
                                                         <th>Regular price</th>
-                                                        <th>Selling price</th>
-                                                        <th>Stock amount</th>
-                                                        <th>Reorder label</th>
                                                         <th>product Image</th>
-                                                        <th>Short description</th>
-                                                        <th>Long description</th>
                                                         <th>Status</th>
-                                                        <th>Featured Status</th>
                                                         <th>Actions</th>
                                                     </tr>
                                                 </thead>
@@ -69,30 +59,27 @@
                                                             <td data-field="sl">{{$loop->iteration}}</td>
 
                                                             {{-- this names comming from different table  --}}
-                                                            <td data-field="category">{{$product->category->name}}</td>
+                                                            {{-- <td data-field="category">{{$product->category->name}}</td>
                                                             <td data-field="sub_category">{{$product->subCategory->name}}</td>
                                                             <td data-field="brand">{{$product->brand->name}}</td>
-                                                            <td data-field="unit">{{$product->unit->name}}</td>
+                                                            <td data-field="unit">{{$product->unit->name}}</td> --}}
 
                                                             <td data-field="name">{{$product->name}}</td>
-                                                            <td data-field="code">{{$product->code}}</td>
+                                                            <td data-field="brand">{{$product->brand->name}}
                                                             <td data-field="regular_price">{{$product->regular_price}}</td>
-                                                            <td data-field="selling_price">{{$product->selling_price}}</td>
-                                                            <td data-field="stock_amount">{{$product->stock_amount}}</td>
-                                                            <td data-field="reorder_label">{{$product->reorder_label}}</td>
                                                             <td data-field="image">
                                                                 <img src="{{$product->image}}" height="50px" width="50px" alt="">
                                                             </td>
-                                                            <td data-field="short_description">{{substr(($product->short_description), 0, 20)}}...</td>
-                                                            <td data-field="long_description">{{substr(($product->long_description), 0, 20)}}...</td>
                                                             <td data-field="status">
-                                                                {{ $product->status == 1 ? 'Active' : 'Inactive' }}
-                                                            </td>
-                                                            <td data-field="featured_status">
-                                                                {{ $product->featured_status == 1 ? 'New arrival' : 'Explore' }}
+                                                                <span class="{{$product->status == 1 ? 'text-green' : 'text-red'}}">{{ $product->status == 1 ? 'Active' : 'Inactive' }}</span>
                                                             </td>
                                                             <td>
                                                                 <div class="d-flex">
+                                                                    <a href="{{route('product.show', $product->id)}}"
+                                                                        class="btn btn-primary fs-14 text-white"
+                                                                        title="Show">
+                                                                        <i class="fe fe-eye"></i>
+                                                                    </a>&nbsp;&nbsp;
                                                                     <a href="{{route('product.edit', $product->id)}}"
                                                                         class="btn btn-primary fs-14 text-white edit-icn"
                                                                         title="Edit">

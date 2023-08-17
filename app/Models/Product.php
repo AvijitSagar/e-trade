@@ -90,4 +90,8 @@ class Product extends Model
     public function unit(){
         return $this->belongsTo(Unit::class);
     }
+
+    public function othersImage(){
+        return $this->hasMany(OthersImage::class);
+    }
 }
