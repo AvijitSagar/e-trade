@@ -43,7 +43,7 @@
                                     <div class="form-row">
                                         <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 mb-3">
                                             <label for="category_id">Select Category</label>
-                                            <select name="category_id" id="category_id" class="form-control">
+                                            <select name="category_id" id="category_id" class="form-control" onchange="getSubCategoryByCategory(this.value)">
                                                 @foreach ($categories as $category)
                                                     <option value="{{$category->id}}" {{$category->id == $product->category_id ? 'selected' : ''}}>{{$category->name}}</option>
                                                 @endforeach
@@ -52,9 +52,10 @@
                                         <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 mb-3">
                                             <label for="sub_category_id">Select Subcategory</label>
                                             <select name="sub_category_id" id="sub_category_id" class="form-control">
-                                                @foreach ($subCategories as $subCategory)
+                                                <option value="">Select Subcategory</option>
+                                                {{-- @foreach ($subCategories as $subCategory)
                                                     <option value="{{$subCategory->id}}" {{$subCategory->id == $product->sub_category_id ? 'selected' : ''}}>{{$subCategory->name}}</option>
-                                                @endforeach
+                                                @endforeach --}}
                                             </select>
                                         </div>
                                         <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 mb-3">

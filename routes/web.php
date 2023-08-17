@@ -60,4 +60,5 @@ Route::middleware([
     Route::resource('brand', BrandController::class);
 
     Route::resource('product', ProductController::class);
+    Route::get('get-subcategory-by-category', [ProductController::class, 'getSubCategoryByCategory'])->name('get-subcategory-by-category');
 });

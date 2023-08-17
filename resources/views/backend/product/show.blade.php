@@ -124,7 +124,7 @@
                                                     </tr>
                                                     <tr>
                                                         <th>Long description</th>
-                                                        <td>{{$product->long_description}}</td>
+                                                        <td>{!! $product->long_description !!}</td>
                                                     </tr>
                                                     <tr>
                                                         <th>Featured Status</th>
@@ -133,7 +133,7 @@
                                                     <tr>
                                                         <th>Status</th>
                                                         <td>
-                                                            <span class="{{$product->status == 1 ? 'text-green' : 'text-red'}}">{{$product->status == 1 ? 'Active' : 'Inactive'}}</span>
+                                                            <b><span class="{{$product->status == 1 ? 'text-green' : 'text-red'}}">{{$product->status == 1 ? 'Active' : 'Inactive'}}</span></b>
                                                         </td>
                                                     </tr>
                                                 </tbody>

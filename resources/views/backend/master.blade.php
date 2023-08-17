@@ -1046,6 +1046,28 @@
     <!-- SWITCHER JS -->
     <script src="{{ asset('/') }}backend/assets/switcher/js/switcher.js"></script>
 
+    {{-- personal jquery for subcategory selection by category --}}
+    <script>
+        function getSubCategoryByCategory(categoryId){
+            $.ajax({
+                type    : "GET",
+                url     : "{{route('get-subcategory-by-category')}}" ,  
+                data    : {id : categoryId},
+                dataType: "JSON",
+                success : function(response){
+                    var option = '';
+                    option += '<option value="">Select Subcategory</option>';
+                    $.each(response, function(key, value){
+                        option += '<option value="'+value.id+'">'+value.name+'</option>'
+                    });
+                    var subCategoryId = $('#sub_category_id');
+                    subCategoryId.empty();
+                    subCategoryId.append(option);
+                }
+            })
+        }
+    </script>
+
 </body>
 
 

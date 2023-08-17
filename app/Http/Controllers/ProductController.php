@@ -90,4 +90,8 @@ class ProductController extends Controller
         Product::deleteProduct($product->id);
         return back()->with('message', 'Product deleted successfully');
     }
+
+    public function getSubCategoryByCategory(){
+        return response()->json(SubCategory::where('category_id', $_GET['id'])->get());
+    }
 }

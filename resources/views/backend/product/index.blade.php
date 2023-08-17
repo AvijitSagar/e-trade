@@ -43,7 +43,8 @@
                                     <div class="form-row">
                                         <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 mb-3">
                                             <label for="category_id">Select Category</label>
-                                            <select name="category_id" id="category_id" class="form-control">
+                                            <select name="category_id" id="category_id" class="form-control" onchange="getSubCategoryByCategory(this.value)">
+                                                <option value="">Select Category</option>
                                                 @foreach ($categories as $category)
                                                     <option value="{{$category->id}}">{{$category->name}}</option>
                                                 @endforeach
@@ -52,14 +53,17 @@
                                         <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 mb-3">
                                             <label for="sub_category_id">Select Subcategory</label>
                                             <select name="sub_category_id" id="sub_category_id" class="form-control">
-                                                @foreach ($subCategories as $subCategory)
+                                                <option value="">Select Subcategory</option>
+                                                {{-- now category wise subcategory name coming from jquery so dont need the php foreach loop --}}
+                                                {{-- @foreach ($subCategories as $subCategory)
                                                     <option value="{{$subCategory->id}}">{{$subCategory->name}}</option>
-                                                @endforeach
+                                                @endforeach --}}
                                             </select>
                                         </div>
                                         <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 mb-3">
                                             <label for="brand_id">Select Brand</label>
                                             <select name="brand_id" id="brand_id" class="form-control">
+                                                <option value="">Select Brand</option>
                                                 @foreach ($brands as $brand)
                                                     <option value="{{$brand->id}}">{{$brand->name}}</option>
                                                 @endforeach
@@ -68,6 +72,7 @@
                                         <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 mb-3">
                                             <label for="unit_id">Select Unit</label>
                                             <select name="unit_id" id="unit_id" class="form-control">
+                                                <option value="">Select unit</option>
                                                 @foreach ($units as $unit)
                                                     <option value="{{$unit->id}}">{{$unit->name}}</option>
                                                 @endforeach
