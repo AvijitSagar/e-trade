@@ -88,6 +88,7 @@ class ProductController extends Controller
     public function destroy(Product $product)
     {
         Product::deleteProduct($product->id);
+        OthersImage::deleteOtherImage($product->id);
         return back()->with('message', 'Product deleted successfully');
     }
 
