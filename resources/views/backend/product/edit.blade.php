@@ -102,7 +102,7 @@
                                         </div>
                                         <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 mb-3">
                                             <label for="others_image">Others image</label>
-                                            <input type="file" name="others_image" accept="image/*" class="form-control" id="others_image" placeholder="" multiple>
+                                            <input type="file" name="others_image[]" accept="image/*" class="form-control" id="others_image" placeholder="" multiple>
                                             @foreach ($product->othersImage as $otherImage)
                                                 <img src="{{asset($otherImage->image)}}" alt="product_other_images" height="70px" width="70px" style="margin-top: 7px">&nbsp;
                                             @endforeach

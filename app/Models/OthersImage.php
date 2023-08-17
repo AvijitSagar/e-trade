@@ -28,4 +28,15 @@ class OthersImage extends Model
             self::$othersImage->save();
         }
     }
+
+    public static function updateOtherImage($request, $id){
+        self::$othersImage = OthersImage::where('product_id', $id)->get();
+        foreach(self::$othersImage as $otherImage){
+            if(file_exists($otherImage->image)){
+                unlink($otherImage->image);
+            }
+            $otherImage->delete();
+        }
+        self::newOtherImage($request->file('others_image'), $id);
+    }
 }

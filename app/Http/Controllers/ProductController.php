@@ -76,6 +76,9 @@ class ProductController extends Controller
     public function update(Request $request, Product $product)
     {
         Product::updateProduct($request, $product->id);
+        if($request->file('others_image')){
+            OthersImage::updateOtherImage($request, $product->id);
+        }
         return redirect(route('product.index'))->with('message', 'Product updated successfully');
     }
 

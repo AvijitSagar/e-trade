@@ -76,7 +76,7 @@
                                                             <td>
                                                                 <div class="d-flex">
                                                                     <a href="{{route('product.show', $product->id)}}"
-                                                                        class="btn btn-primary fs-14 text-white"
+                                                                        class="btn btn-secondary fs-14 text-white"
                                                                         title="Show">
                                                                         <i class="fe fe-eye"></i>
                                                                     </a>&nbsp;&nbsp;
