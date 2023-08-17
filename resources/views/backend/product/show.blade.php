@@ -128,7 +128,9 @@
                                                     </tr>
                                                     <tr>
                                                         <th>Featured Status</th>
-                                                        <td>{{$product->featured_status == 1 ? 'New arraival' : 'Explore'}}</td>
+                                                        <td>
+                                                            <b><span class="{{$product->featured_status == 1 ? 'text-secondary' : 'text-info'}}">{{$product->featured_status == 1 ? 'New arraival' : 'Explore'}}</span></b>
+                                                        </td>
                                                     </tr>
                                                     <tr>
                                                         <th>Status</th>
