@@ -95,4 +95,10 @@ class ProductController extends Controller
     public function getSubCategoryByCategory(){
         return response()->json(SubCategory::where('category_id', $_GET['id'])->get());
     }
+
+    private $message;
+    public function updateFeaturedStatus($id){
+        $this->message = Product::updateFeaturedStatus($id);
+        return back()->with('message', $this->message);
+    }
 }

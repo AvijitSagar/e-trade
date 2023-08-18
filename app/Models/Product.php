@@ -10,7 +10,7 @@ class Product extends Model
 {
     use HasFactory;
 
-    private static $product, $image, $imageName, $directory;
+    private static $product, $image, $imageName, $directory, $message;
 
     public static function imageUpload($request){
         self::$image = $request->file('image');
@@ -93,5 +93,19 @@ class Product extends Model
 
     public function othersImage(){
         return $this->hasMany(OthersImage::class);
+    }
+
+    public static function updateFeaturedStatus($id){
+        self::$product = Product::find($id);
+
+        if(self::$product->featured_status == 1){
+            self::$product->featured_status = 0;
+            self::$message = 'product status updated to Explore';
+        }else{
+            self::$product->featured_status = 1;
+            self::$message = 'product status updated to New Arraival';
+        }
+        self::$product->save();
+        return self::$message;
     }
 }

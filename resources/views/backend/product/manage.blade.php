@@ -46,9 +46,10 @@
                                                     <tr>
                                                         <th>SL</th>
                                                         <th>Product Name</th>
-                                                        <th>Brand</th>
+                                                        {{-- <th>Brand</th> --}}
                                                         <th>Regular price</th>
                                                         <th>product Image</th>
+                                                        <th>Featured Status</th>
                                                         <th>Status</th>
                                                         <th>Actions</th>
                                                     </tr>
@@ -65,10 +66,13 @@
                                                             <td data-field="unit">{{$product->unit->name}}</td> --}}
 
                                                             <td data-field="name">{{$product->name}}</td>
-                                                            <td data-field="brand">{{$product->brand->name}}
+                                                            {{-- <td data-field="brand">{{$product->brand->name}} --}}
                                                             <td data-field="regular_price">{{$product->regular_price}}</td>
                                                             <td data-field="image">
                                                                 <img src="{{$product->image}}" height="50px" width="50px" alt="">
+                                                            </td>
+                                                            <td data-field="featured_status">
+                                                                <b><span class="{{$product->featured_status == 1 ? 'text-secondary' : 'text-info'}}">{{ $product->featured_status == 1 ? 'New arrival' : 'Explore' }}</span></b>
                                                             </td>
                                                             <td data-field="status">
                                                                 <b><span class="{{$product->status == 1 ? 'text-green' : 'text-red'}}">{{ $product->status == 1 ? 'Active' : 'Inactive' }}</span></b>
@@ -76,9 +80,14 @@
                                                             <td>
                                                                 <div class="d-flex">
                                                                     <a href="{{route('product.show', $product->id)}}"
-                                                                        class="btn btn-info fs-14 text-white"
+                                                                        class="btn btn-purple fs-14 text-white"
                                                                         title="Show">
                                                                         <i class="fe fe-eye"></i>
+                                                                    </a>&nbsp;&nbsp;
+                                                                    <a href="{{route('product.updateFeaturedStatus', $product->id)}}"
+                                                                        class="btn {{$product->featured_status == 1 ? 'btn-secondary' : 'btn-info'}} fs-14 text-white"
+                                                                        title="Show">
+                                                                        <i class="fe {{$product->featured_status == 1 ? 'fe-sunrise' : 'fe-layers'}}"></i>
                                                                     </a>&nbsp;&nbsp;
                                                                     <a href="{{route('product.edit', $product->id)}}"
                                                                         class="btn btn-primary fs-14 text-white edit-icn"

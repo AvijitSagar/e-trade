@@ -61,4 +61,5 @@ Route::middleware([
 
     Route::resource('product', ProductController::class);
     Route::get('get-subcategory-by-category', [ProductController::class, 'getSubCategoryByCategory'])->name('get-subcategory-by-category');
+    Route::get('product/update-featured-status/{id}', [ProductController::class, 'updateFeaturedStatus'])->name('product.updateFeaturedStatus');
 });
