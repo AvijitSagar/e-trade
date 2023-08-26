@@ -43,17 +43,18 @@
                                     <div class="form-row">
                                         <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 mb-3">
                                             <label for="validationCustom011">Select Category</label>
-                                            <select name="category_id" class="form-control" id="">
-                                                <option value="">Select Category</option>
+                                            <select name="category_id" required class="form-control" id="">
+                                                <option value="" disabled selected>Select Category</option>
                                                 @foreach ($categories as $category)
                                                     <option value="{{$category->id}}" {{$category->id == $subCategory->category_id ? 'selected' : ''}}>{{$category->name}}</option> 
                                                 @endforeach
                                             </select>
+                                            <p class="text-danger pt-2">{{$errors->has('category_id') ? $errors->first('category_id') : ''}}</p>
                                         </div>
                                         <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 mb-3">
                                             <label for="validationCustom011">Sub-category name</label>
                                             <input type="text" name="name" value="{{$subCategory->name}}" class="form-control" id="validationCustom011" placeholder="Add sub-category name" required>
-                                            <div class="valid-feedback">Looks good!</div>
+                                            <p class="text-danger pt-2">{{$errors->has('name') ? $errors->first('name') : ''}}</p>
                                         </div>
                                         <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 mb-3">
                                             <label for="validationCustom011">Status</label>

@@ -58,7 +58,8 @@
                                                             <td data-field="name">{{ $subCategory->name }}</td>
                                                             <td data-field="category">{{ $subCategory->category->name }}</td>
                                                             <td data-field="status">
-                                                                {{ $subCategory->status == 1 ? 'Active' : 'Inactive' }}</td>
+                                                                <b><span class="{{$subCategory->status == 1 ? 'text-green' : 'text-red'}}">{{ $subCategory->status == 1 ? 'Active' : 'Inactive' }}</span></b>
+                                                            </td>
                                                             <td>
                                                                 <div class="d-flex">
                                                                     <a href="{{ route('sub-category.edit', $subCategory->id) }}"

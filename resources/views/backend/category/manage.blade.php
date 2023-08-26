@@ -55,7 +55,9 @@
                                                         <tr data-id="{{$category->id}}">
                                                             <td data-field="id">{{$loop->iteration}}</td>
                                                             <td data-field="name">{{$category->name}}</td>
-                                                            <td data-field="status">{{$category->status == 0 ? 'Inactive' : 'Active'}}</td>
+                                                            <td data-field="status">
+                                                                <b><span class="{{$category->status == 1 ? 'text-green' : 'text-red'}}">{{$category->status == 0 ? 'Inactive' : 'Active'}}</span></b>
+                                                            </td>
                                                             <td>
                                                                 <div class="d-flex">
                                                                     <a href="{{route('category.edit', $category->id)}}" class="btn btn-primary fs-14 text-white edit-icn" title="Edit">

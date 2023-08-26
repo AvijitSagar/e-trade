@@ -42,17 +42,18 @@
                                     <div class="form-row">
                                         <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 mb-3">
                                             <label for="validationCustom011">Select Category</label>
-                                            <select name="category_id" class="form-control" id="">
-                                                <option value="">Select Category</option>
+                                            <select name="category_id" required class="form-control" id="">
+                                                <option value="" disabled selected>Select Category</option>
                                                 @foreach ($categories as $category)
                                                     <option value="{{$category->id}}">{{$category->name}}</option> 
                                                 @endforeach
                                             </select>
+                                            <p class="text-danger pt-2">{{$errors->has('category_id') ? $errors->first('category_id') : ''}}</p>
                                         </div>
                                         <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 mb-3">
-                                            <label for="validationCustom011">Add Sub-category</label>
-                                            <input type="text" name="name" class="form-control" id="validationCustom011" placeholder="" required>
-                                            <div class="valid-feedback">Looks good!</div>
+                                            <label for="subcategory_name">Add Sub-category</label>
+                                            <input type="text" name="name" class="form-control" id="subcategory_name" placeholder="">
+                                            <p class="text-danger pt-2">{{$errors->has('name') ? $errors->first('name') : ''}}</p>
                                         </div>
                                     </div>
                                     <button class="btn btn-primary" type="submit">Add Sub-Category</button>
