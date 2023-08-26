@@ -41,9 +41,9 @@
                                     @csrf
                                     <div class="form-row">
                                         <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 mb-3">
-                                            <label for="validationCustom011">Category Name</label>
-                                            <input type="text" name="name" class="form-control" id="validationCustom011" placeholder="Add category name" required>
-                                            <div class="valid-feedback">Looks good!</div>
+                                            <label for="category_name">Category Name</label>
+                                            <input type="text" name="name" class="form-control" id="category_name" placeholder="Add category name">
+                                            <p class="text-danger pt-2">{{$errors->has('name') ? $errors->first('name') : ''}}</p>
                                         </div>
                                     </div>
                                     <button class="btn btn-primary" type="submit">Add Category</button>

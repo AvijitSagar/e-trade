@@ -42,13 +42,13 @@
                                     @method('PUT')
                                     <div class="form-row">
                                         <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 mb-3">
-                                            <label for="validationCustom011">Category Name</label>
-                                            <input type="text" name="name" value="{{$category->name}}" class="form-control" id="validationCustom011" placeholder="Add category name" required>
-                                            <div class="valid-feedback">Looks good!</div>
+                                            <label for="category_name">Category Name</label>
+                                            <input type="text" name="name" value="{{$category->name}}" class="form-control" id="category_name" placeholder="Add category name">
+                                            <p class="text-danger pt-2">{{$errors->has('name') ? $errors->first('name') : ''}}</p>
                                         </div>
                                         <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 mb-3">
-                                            <label for="validationCustom011">Status</label>
-                                            <select name="status" class="form-control" id="">
+                                            <label for="category_status">Status</label>
+                                            <select name="status" class="form-control" id="category_statuscategory_status">
                                                 <option value="1" {{$category->status == 1 ? 'selected' : ''}}>Active</option>
                                                 <option value="0" {{$category->status == 0 ? 'selected' : ''}}>Inactive</option>
                                             </select>

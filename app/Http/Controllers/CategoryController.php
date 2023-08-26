@@ -30,6 +30,12 @@ class CategoryController extends Controller
      */
     public function store(Request $request)
     {
+        // $this->validate($request, ['category_name' => 'required'], ['category_name.required' => 'This field is required']);
+        $this->validate(
+            $request,
+            ['name' => 'required|unique:categories,name|alpha:ascii'],
+            ['name.required' => 'This field is required', 'name.unique' => 'Category name must be unique', 'name.alpha' => 'This field must only contain letters']
+        );
         Category::newCategory($request);
         return back()->with('message', 'Category added successfully');
     }
@@ -57,6 +63,11 @@ class CategoryController extends Controller
      */
     public function update(Request $request, string $id)
     {
+        $this->validate(
+            $request,
+            ['name' => 'required|alpha:ascii'],
+            ['name.required' => 'Category name cannot be empty', 'name.alpha' => 'This field must only contain letters']
+        );
         Category::updateCategory($request, $id);
         return redirect(route('category.index'))->with('message', 'Category updated successfully');
     }
