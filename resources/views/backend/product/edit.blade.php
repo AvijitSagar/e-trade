@@ -48,6 +48,7 @@
                                                     <option value="{{$category->id}}" {{$category->id == $product->category_id ? 'selected' : ''}}>{{$category->name}}</option>
                                                 @endforeach
                                             </select>
+                                            <p class="text-danger pt-2">{{$errors->has('category_id') ? $errors->first('category_id') : ''}}</p>
                                         </div>
                                         <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 mb-3">
                                             <label for="sub_category_id">Select Subcategory</label>
@@ -56,6 +57,7 @@
                                                     <option value="{{$subCategory->id}}" {{$subCategory->id == $product->sub_category_id ? 'selected' : ''}}>{{$subCategory->name}}</option>
                                                 @endforeach
                                             </select>
+                                            <p class="text-danger pt-2">{{$errors->has('sub_category_id') ? $errors->first('sub_category_id') : ''}}</p>
                                         </div>
                                         <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 mb-3">
                                             <label for="brand_id">Select Brand</label>
@@ -64,6 +66,7 @@
                                                     <option value="{{$brand->id}}" {{$brand->id == $product->brand_id ? 'selected' : ''}}>{{$brand->name}}</option>
                                                 @endforeach
                                             </select>
+                                            <p class="text-danger pt-2">{{$errors->has('brand_id') ? $errors->first('brand_id') : ''}}</p>
                                         </div>
                                         <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 mb-3">
                                             <label for="unit_id">Select Unit</label>
@@ -72,33 +75,50 @@
                                                     <option value="{{$unit->id}}" {{$unit->id == $product->unit_id ? 'selected' : ''}}>{{$unit->name}}</option>
                                                 @endforeach
                                             </select>
+                                            <p class="text-danger pt-2">{{$errors->has('unit_id') ? $errors->first('unit_id') : ''}}</p>
                                         </div>
                                         <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 mb-3">
                                             <label for="name">Product Name</label>
                                             <input type="text" name="name" value="{{$product->name}}" class="form-control" id="name" placeholder="Enter product name" required>
+                                            <p class="text-danger pt-2">{{$errors->has('name') ? $errors->first('name') : ''}}</p>
                                         </div>
                                         <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 mb-3">
                                             <label for="code">Product Code</label>
                                             <input type="text" name="code" value="{{$product->code}}" class="form-control" id="code" placeholder="Enter product code" required>
+                                            <p class="text-danger pt-2">{{$errors->has('code') ? $errors->first('code') : ''}}</p>
                                         </div>
                                         <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 mb-3">
                                             <label for="product_price">Product Price</label>
                                             <div class="input-group">
-                                                <input type="text" name="regular_price" value="{{$product->regular_price}}" id="product_price" placeholder="Enter regular price" class="form-control">
-                                                <input type="text" name="selling_price" value="{{$product->selling_price}}" id="product_price" placeholder="Enter selling price" class="form-control">
+                                                <div>
+                                                    <input type="text" name="regular_price" value="{{$product->regular_price}}" id="product_price" placeholder="Enter regular price" class="form-control">
+                                                    <p class="text-danger pt-2">{{$errors->has('regular_price') ? $errors->first('regular_price') : ''}}</p>
+                                                </div>
+                                                <div>
+                                                    <input type="text" name="selling_price" value="{{$product->selling_price}}" id="product_price" placeholder="Enter selling price" class="form-control">
+                                                    <p class="text-danger pt-2">{{$errors->has('selling_price') ? $errors->first('selling_price') : ''}}</p>
+                                                </div>
                                             </div>
                                         </div>
                                         <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 mb-3">
                                             <label for="stock_status">Stock Status</label>
                                             <div class="input-group">
-                                                <input type="text" name="stock_amount" value="{{$product->stock_amount}}" id="stock_status" placeholder="Enter stock Amount" class="form-control">
-                                                <input type="text" name="reorder_label" value="{{$product->reorder_label}}" id="stock_status" placeholder="Enter reorder Label" class="form-control">
+                                                <div>
+                                                    <input type="text" name="stock_amount" value="{{$product->stock_amount}}" id="stock_status" placeholder="Enter stock Amount" class="form-control">
+                                                    <p class="text-danger pt-2">{{$errors->has('stock_amount') ? $errors->first('stock_amount') : ''}}</p>
+                                                </div>
+                                                <div>
+                                                    <input type="text" name="reorder_label" value="{{$product->reorder_label}}" id="stock_status" placeholder="Enter reorder Label" class="form-control">
+                                                    <p class="text-danger pt-2">{{$errors->has('reorder_label') ? $errors->first('reorder_label') : ''}}</p>
+                                                </div>
+                                                
                                             </div>
                                         </div>
                                         <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 mb-3">
                                             <label for="image">Product image</label>
                                             <input type="file" name="image" accept="image/*" class="form-control" id="image" placeholder="" required>
                                             <img src="{{asset($product->image)}}" height="70px" width="70px" alt="product_image" style="margin-top: 7px">
+                                            <p class="text-danger pt-2">{{$errors->has('image') ? $errors->first('image') : ''}}</p>
                                         </div>
                                         <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 mb-3">
                                             <label for="others_image">Others image</label>

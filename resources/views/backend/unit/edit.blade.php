@@ -42,9 +42,9 @@
                                     @method('PUT')
                                     <div class="form-row">
                                         <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 mb-3">
-                                            <label for="validationCustom011">Unit Name</label>
-                                            <input type="text" name="name" class="form-control" value="{{$unit->name}}" id="validationCustom011" placeholder="Add Unit name" required>
-                                            <div class="valid-feedback">Looks good!</div>
+                                            <label for="unit_name">Unit Name</label>
+                                            <input type="text" name="name" class="form-control" value="{{$unit->name}}" id="unit_name" placeholder="Add Unit name" required>
+                                            <p class="text-danger pt-2">{{$errors->has('name') ? $errors->first('name') : ''}}</p>
                                         </div>
                                         <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 mb-3">
                                             <label for="validationCustom011">Status</label>

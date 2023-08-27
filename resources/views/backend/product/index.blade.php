@@ -43,66 +43,86 @@
                                     <div class="form-row">
                                         <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 mb-3">
                                             <label for="category_id">Select Category</label>
-                                            <select name="category_id" id="category_id" class="form-control" onchange="getSubCategoryByCategory(this.value)">
-                                                <option value="">Select Category</option>
+                                            <select name="category_id" required id="category_id" class="form-control" onchange="getSubCategoryByCategory(this.value)">
+                                                <option value="" disabled selected>Select Category</option>
                                                 @foreach ($categories as $category)
                                                     <option value="{{$category->id}}">{{$category->name}}</option>
                                                 @endforeach
                                             </select>
+                                            <p class="text-danger pt-2">{{$errors->has('category_id') ? $errors->first('category_id') : ''}}</p>
                                         </div>
                                         <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 mb-3">
                                             <label for="sub_category_id">Select Subcategory</label>
-                                            <select name="sub_category_id" id="sub_category_id" class="form-control">
-                                                <option value="">Select Subcategory</option>
+                                            <select name="sub_category_id" required id="sub_category_id" class="form-control">
+                                                <option value="" disabled selected>Select Subcategory</option>
                                                 {{-- now category wise subcategory name coming from jquery so dont need the php foreach loop --}}
-                                                {{-- @foreach ($subCategories as $subCategory)
+                                                @foreach ($subCategories as $subCategory)
                                                     <option value="{{$subCategory->id}}">{{$subCategory->name}}</option>
-                                                @endforeach --}}
+                                                @endforeach
                                             </select>
+                                            <p class="text-danger pt-2">{{$errors->has('sub_category_id') ? $errors->first('sub_category_id') : ''}}</p>
                                         </div>
                                         <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 mb-3">
                                             <label for="brand_id">Select Brand</label>
-                                            <select name="brand_id" id="brand_id" class="form-control">
-                                                <option value="">Select Brand</option>
+                                            <select name="brand_id" required id="brand_id" class="form-control">
+                                                <option value="" disabled selected>Select Brand</option>
                                                 @foreach ($brands as $brand)
                                                     <option value="{{$brand->id}}">{{$brand->name}}</option>
                                                 @endforeach
                                             </select>
+                                            <p class="text-danger pt-2">{{$errors->has('brand_id') ? $errors->first('brand_id') : ''}}</p>
                                         </div>
                                         <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 mb-3">
                                             <label for="unit_id">Select Unit</label>
-                                            <select name="unit_id" id="unit_id" class="form-control">
-                                                <option value="">Select unit</option>
+                                            <select name="unit_id" required id="unit_id" class="form-control">
+                                                <option value="" disabled selected>Select unit</option>
                                                 @foreach ($units as $unit)
                                                     <option value="{{$unit->id}}">{{$unit->name}}</option>
                                                 @endforeach
                                             </select>
+                                            <p class="text-danger pt-2">{{$errors->has('unit_id') ? $errors->first('unit_id') : ''}}</p>
                                         </div>
                                         <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 mb-3">
                                             <label for="name">Product Name</label>
                                             <input type="text" name="name" class="form-control" id="name" placeholder="Enter product name" required>
+                                            <p class="text-danger pt-2">{{$errors->has('name') ? $errors->first('name') : ''}}</p>
                                         </div>
                                         <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 mb-3">
                                             <label for="code">Product Code</label>
                                             <input type="text" name="code" class="form-control" id="code" placeholder="Enter product code" required>
+                                            <p class="text-danger pt-2">{{$errors->has('code') ? $errors->first('code') : ''}}</p>
                                         </div>
                                         <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 mb-3">
                                             <label for="product_price">Product Price</label>
                                             <div class="input-group">
-                                                <input type="text" name="regular_price" id="product_price" placeholder="Enter regular price" class="form-control">
-                                                <input type="text" name="selling_price" id="product_price" placeholder="Enter selling price" class="form-control">
+                                                <div>
+                                                    <input type="text" name="regular_price" id="product_price" placeholder="Enter regular price" class="form-control">
+                                                    <p class="text-danger pt-2">{{$errors->has('regular_price') ? $errors->first('regular_price') : ''}}</p>
+                                                </div>
+                                                
+                                                <div>
+                                                    <input type="text" name="selling_price" id="product_price" placeholder="Enter selling price" class="form-control">
+                                                    <p class="text-danger pt-2">{{$errors->has('selling_price') ? $errors->first('selling_price') : ''}}</p>
+                                                </div>
                                             </div>
                                         </div>
                                         <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 mb-3">
                                             <label for="stock_status">Stock Status</label>
                                             <div class="input-group">
-                                                <input type="text" name="stock_amount" id="stock_status" placeholder="Enter stock Amount" class="form-control">
-                                                <input type="text" name="reorder_label" id="stock_status" placeholder="Enter reorder Label" class="form-control">
+                                                <div>
+                                                    <input type="text" name="stock_amount" id="stock_status" placeholder="Enter stock Amount" class="form-control">
+                                                    <p class="text-danger pt-2">{{$errors->has('stock_amount') ? $errors->first('stock_amount') : ''}}</p>
+                                                </div>
+                                                <div>
+                                                    <input type="text" name="reorder_label" id="stock_status" placeholder="Enter reorder Label" class="form-control">
+                                                    <p class="text-danger pt-2">{{$errors->has('reorder_label') ? $errors->first('reorder_label') : ''}}</p>
+                                                </div>
                                             </div>
                                         </div>
                                         <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 mb-3">
                                             <label for="image">Product image</label>
                                             <input type="file" name="image" accept="image/*" class="form-control" id="image" placeholder="" required>
+                                            <p class="text-danger pt-2">{{$errors->has('image') ? $errors->first('image') : ''}}</p>
                                         </div>
                                         <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 mb-3">
                                             <label for="others_image">Others image</label>

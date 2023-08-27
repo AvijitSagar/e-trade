@@ -57,7 +57,9 @@
                                                             <td data-field="sl">{{ $loop->iteration }}</td>
                                                             <td data-field="name">{{ $unit->name }}</td>
                                                             <td data-field="category">{{ $unit->description }}</td>
-                                                            <td data-field="status">{{ $unit->status == 1 ? 'Active' : 'Inactive' }}</td>
+                                                            <td data-field="status">
+                                                                <b><span class="{{ $unit->status == 1 ? 'text-green' : 'text-red' }}">{{ $unit->status == 1 ? 'Active' : 'Inactive' }}</span></b>
+                                                            </td>
                                                             <td>
                                                                 <div class="d-flex">
                                                                     <a href="{{ route('unit.edit', $unit->id) }}"

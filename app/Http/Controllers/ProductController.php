@@ -41,6 +41,36 @@ class ProductController extends Controller
     private $product;
     public function store(Request $request)
     {
+        $this->validate($request,[
+            'category_id' => 'required',
+            'sub_category_id' => 'required',
+            'brand_id' => 'required',
+            'unit_id' => 'required',
+            'name' => 'required',
+            'code' => 'required|unique:products,code',
+            'regular_price' => 'required|regex:/(^([0-9.]+)(\d+)?$)/u',
+            'selling_price' => 'required|regex:/(^([0-9.]+)(\d+)?$)/u',
+            'stock_amount' => 'required|regex:/(^([0-9.]+)(\d+)?$)/u',
+            'reorder_label' => 'required|regex:/(^([0-9.]+)(\d+)?$)/u',
+            'image' => 'required',
+        ], [
+            'category_id.required' => 'Please select a category',
+            'sub_category_id.required' => 'Please select a subcategory',
+            'brand_id.required' => 'Please select a brand',
+            'unit_id.required' => 'Please select a unit',
+            'name.required' => 'Product name is required',
+            'code.required' => 'Product code is required',
+            'code.unique' => 'Product code must be unique',
+            'regular_price.required' => '***',
+            'regular_price.regex' => 'Numbers only',
+            'selling_price.required' => '***',
+            'selling_price.regex' => 'Numbers only',
+            'stock_amount.required' => '***',
+            'stock_amount.regex' => 'Numbers only',
+            'reorder_label.required' => '***',
+            'reorder_label.regex' => 'Numbers only',
+            'image' => 'Product image is required'
+        ]);
         $this->product = Product::newProduct($request);
         OthersImage::newOtherImage($request->file('others_image'), $this->product->id);
         return back()->with('message', 'product added successfully');
@@ -75,6 +105,36 @@ class ProductController extends Controller
      */
     public function update(Request $request, Product $product)
     {
+        $this->validate($request,[
+            'category_id' => 'required',
+            'sub_category_id' => 'required',
+            'brand_id' => 'required',
+            'unit_id' => 'required',
+            'name' => 'required',
+            'code' => 'required|unique:products,code,'.$product->id.'id',
+            'regular_price' => 'required|regex:/(^([0-9.]+)(\d+)?$)/u',
+            'selling_price' => 'required|regex:/(^([0-9.]+)(\d+)?$)/u',
+            'stock_amount' => 'required|regex:/(^([0-9.]+)(\d+)?$)/u',
+            'reorder_label' => 'required|regex:/(^([0-9.]+)(\d+)?$)/u',
+            'image' => 'required'.$product->id.'id',
+        ], [
+            'category_id.required' => 'Please select a category',
+            'sub_category_id.required' => 'Please select a subcategory',
+            'brand_id.required' => 'Please select a brand',
+            'unit_id.required' => 'Please select a unit',
+            'name.required' => 'Product name is required',
+            'code.required' => 'Product code is required',
+            'code.unique' => 'Product code must be unique',
+            'regular_price.required' => '***',
+            'regular_price.regex' => 'Numbers only',
+            'selling_price.required' => '***',
+            'selling_price.regex' => 'Numbers only',
+            'stock_amount.required' => '***',
+            'stock_amount.regex' => 'Numbers only',
+            'reorder_label.required' => '***',
+            'reorder_label.regex' => 'Numbers only',
+            'image' => 'Product image is required'
+        ]);
         Product::updateProduct($request, $product->id);
         if($request->file('others_image')){
             OthersImage::updateOtherImage($request, $product->id);

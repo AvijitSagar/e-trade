@@ -30,6 +30,16 @@ class BrandController extends Controller
      */
     public function store(Request $request)
     {
+        $this->validate($request, [
+            'name' => 'required|unique:brands,name|regex:/(^([a-zA-z0-9 -]+)(\d+)?$)/u',
+            'image' => 'required|unique:brands,image'
+        ], [
+            'name.required' => 'Brand name is required',
+            'name.unique' => 'Brand name should be unique',
+            'name.regex' => 'This fild can contain letters numbers and "-" only',
+            'image.required' => 'Please select a brand image',
+            'image.unique' => 'This image already in use. please select another'
+        ]);
         Brand::newBrand($request);
         return back()->with('message', 'Brand added successfully');
     }
@@ -57,6 +67,16 @@ class BrandController extends Controller
      */
     public function update(Request $request, Brand $brand)
     {
+        $this->validate($request, [
+            'name' => 'required|unique:brands,name,'.$brand->id.',id|regex:/(^([a-zA-z0-9 -]+)(\d+)?$)/u',
+            // 'image' => 'required|unique:brands,image'
+        ], [
+            'name.required' => 'Brand name is required',
+            // 'name.unique' => 'Brand name should be unique',
+            'name.regex' => 'This fild can contain letters numbers and "-" only',
+            'image.required' => 'Please select a brand image',
+            'image.unique' => 'This image already in use. please select another'
+        ]);
         Brand::updateBrand($request, $brand->id);
         return redirect(route('brand.index'))->with('message', 'Brand updated successfully');
     }

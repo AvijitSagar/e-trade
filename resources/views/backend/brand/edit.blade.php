@@ -43,26 +43,21 @@
                                     @method('PUT')
                                     <div class="form-row">
                                         <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 mb-3">
-                                            <label for="validationCustom011">Brand name</label>
-                                            <input type="text" value="{{ $brand->name }}" name="name"
-                                                class="form-control" id="validationCustom011" placeholder="" required>
+                                            <label for="brand_name">Brand name</label>
+                                            <input type="text" value="{{ $brand->name }}" name="name" class="form-control" id="brand_name" placeholder="" required>
+                                            <p class="text-danger pt-2">{{$errors->has('name') ? $errors->first('name') : ''}}</p>
                                         </div>
-                                    </div>
-                                    <div class="form-row">
                                         <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 mb-3">
-                                            <label for="validationCustom011">Brand image</label>
+                                            <label for="image">Brand image</label>
                                             <input type="file" name="image" accept="image/*" class="form-control"
-                                                id="validationCustom011" placeholder="">
+                                                id="image" placeholder="">
                                                 <img src="{{asset($brand->image)}}" height="50px" width="50px" alt="">
+                                                <p class="text-danger pt-2">{{$errors->has('image') ? $errors->first('image') : ''}}</p>
                                         </div>
-                                    </div>
-                                    <div class="form-row">
                                         <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 mb-3">
                                             <label for="validationCustom011">Brand description</label>
-                                            <textarea name="description" class="form-control" id="" cols="30" rows="10">{{ $brand->description }}</textarea>
+                                            <textarea name="description" class="form-control" id="" cols="30" rows="5">{{ $brand->description }}</textarea>
                                         </div>
-                                    </div>
-                                    <div class="form-row">
                                         <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 mb-3">
                                             <label for="validationCustom011">Action</label>
                                             <select class="form-control" name="status" id="">
@@ -72,6 +67,15 @@
                                                 </option>
                                             </select>
                                         </div>
+                                    </div>
+                                    <div class="form-row">
+                                        
+                                    </div>
+                                    <div class="form-row">
+                                        
+                                    </div>
+                                    <div class="form-row">
+                                        
                                     </div>
                                     <button class="btn btn-primary" type="submit">Edit Brand</button>
                                 </form>

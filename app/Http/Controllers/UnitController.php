@@ -30,6 +30,13 @@ class UnitController extends Controller
      */
     public function store(Request $request)
     {
+        $this->validate($request,[
+            'name' => 'required|unique:units,name|regex:/(^([a-zA-z0-9 -]+)(\d+)?$)/u'
+        ], [
+            'name.required' => 'Unit name is required',
+            'name.unique' => 'Unit name must be unique',
+            'name.regex' => 'This fild can contain letters numbers and "-" only'
+        ]);
         Unit::newUnit($request);
         return back()->with('message', 'Unit added successfully');
     }
@@ -57,6 +64,13 @@ class UnitController extends Controller
      */
     public function update(Request $request, string $id)
     {
+        $this->validate($request,[
+            'name' => 'required|unique:units,name,'.$id.'id|regex:/(^([a-zA-z0-9 -]+)(\d+)?$)/u'
+        ], [
+            'name.required' => 'Unit name is required',
+            'name.unique' => 'Unit name must be unique',
+            'name.regex' => 'This fild can contain letters numbers and "-" only'
+        ]);
         Unit::updateUnit($request, $id);
         return redirect(route('unit.index'))->with('message', 'Unit updated successfully');
     }

@@ -41,16 +41,18 @@
                                     @csrf
                                     <div class="form-row">
                                         <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 mb-3">
-                                            <label for="validationCustom011">Brand name</label>
-                                            <input type="text" name="name" class="form-control" id="validationCustom011" placeholder="" required>
+                                            <label for="brand_name">Brand name</label>
+                                            <input type="text" name="name" class="form-control" id="brand_name" placeholder="" required>
+                                            <p class="text-danger pt-2">{{$errors->has('name') ? $errors->first('name') : ''}}</p>
                                         </div>
                                         <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 mb-3">
-                                            <label for="validationCustom011">Brand image</label>
-                                            <input type="file" name="image" accept="image/*" class="form-control" id="validationCustom011" placeholder="" required>
+                                            <label for="brand_image">Brand image</label>
+                                            <input type="file" name="image" accept="image/*" class="form-control" id="brand_image" placeholder="" required>
+                                            <p class="text-danger pt-2">{{$errors->has('image') ? $errors->first('image') : ''}}</p>
                                         </div>
                                         <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 mb-3">
                                             <label for="validationCustom011">Brand description</label>
-                                            <textarea name="description" class="form-control" id="" cols="30" rows="10"></textarea>
+                                            <textarea name="description" class="form-control" id="" cols="30" rows="5"></textarea>
                                         </div>
                                     </div>
                                     <button class="btn btn-primary" type="submit">Add Brand</button>

@@ -41,15 +41,15 @@
                                     @csrf
                                     <div class="form-row">
                                         <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 mb-3">
-                                            <label for="validationCustom011">Unit Name</label>
-                                            <input type="text" name="name" class="form-control" id="validationCustom011" placeholder="Add Unit name" required>
-                                            <div class="valid-feedback">Looks good!</div>
+                                            <label for="unit_name">Unit Name</label>
+                                            <input type="text" name="name" class="form-control" id="unit_name" placeholder="" required>
+                                            <p class="text-danger pt-2">{{$errors->has('name') ? $errors->first('name') : ''}}</p>
                                         </div>
                                     </div>
                                     <div class="form-row">
                                         <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 mb-3">
-                                            <label for="validationCustom011">Unit Description</label>
-                                            <textarea type="text" name="description" class="form-control" id="validationCustom011" cols="30" rows="10" placeholder="Add Unit description"></textarea>
+                                            <label for="unit_desc">Unit Description</label>
+                                            <textarea type="text" name="description" class="form-control" id="unit_desc" cols="30" rows="10" placeholder=""></textarea>
                                             <div class="valid-feedback">Looks good!</div>
                                         </div>
                                     </div>

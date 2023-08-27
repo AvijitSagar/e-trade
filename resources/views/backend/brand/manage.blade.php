@@ -62,7 +62,7 @@
                                                                 <img src="{{$brand->image}}" height="50px" width="50px" alt="">
                                                             </td>
                                                             <td data-field="status">
-                                                                {{ $brand->status == 1 ? 'Active' : 'Inactive' }}
+                                                                <b><span class="{{ $brand->status == 1 ? 'text-green' : 'text-red' }}">{{ $brand->status == 1 ? 'Active' : 'Inactive' }}</span></b>
                                                             </td>
                                                             <td>
                                                                 <div class="d-flex">
