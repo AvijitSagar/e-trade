@@ -53,6 +53,7 @@ class ProductController extends Controller
             'stock_amount' => 'required|regex:/(^([0-9.]+)(\d+)?$)/u',
             'reorder_label' => 'required|regex:/(^([0-9.]+)(\d+)?$)/u',
             'image' => 'required',
+            'others_image' => 'required'
         ], [
             'category_id.required' => 'Please select a category',
             'sub_category_id.required' => 'Please select a subcategory',
@@ -69,7 +70,8 @@ class ProductController extends Controller
             'stock_amount.regex' => 'Numbers only',
             'reorder_label.required' => '***',
             'reorder_label.regex' => 'Numbers only',
-            'image' => 'Product image is required'
+            'image.required' => 'Product image is required',
+            'others_image.required' => 'Others image is required'
         ]);
         $this->product = Product::newProduct($request);
         OthersImage::newOtherImage($request->file('others_image'), $this->product->id);

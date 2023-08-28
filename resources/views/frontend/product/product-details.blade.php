@@ -17,36 +17,20 @@
                                     <div class="col-lg-10 order-lg-2">
                                         <div class="single-product-thumbnail-wrap zoom-gallery">
                                             <div class="single-product-thumbnail product-large-thumbnail-3 axil-product">
-                                                <div class="thumbnail">
-                                                    <a href="{{asset('/')}}frontend/assets/images/product/product-big-01.png" class="popup-zoom">
-                                                        <img src="{{asset('/')}}frontend/assets/images/product/product-big-01.png"
-                                                            alt="Product Images">
-                                                    </a>
-                                                </div>
-                                                <div class="thumbnail">
-                                                    <a href="{{asset('/')}}frontend/assets/images/product/product-big-02.png" class="popup-zoom">
-                                                        <img src="{{asset('/')}}frontend/assets/images/product/product-big-02.png"
-                                                            alt="Product Images">
-                                                    </a>
-                                                </div>
-                                                <div class="thumbnail">
-                                                    <a href="{{asset('/')}}frontend/assets/images/product/product-big-03.png" class="popup-zoom">
-                                                        <img src="{{asset('/')}}frontend/assets/images/product/product-big-03.png"
-                                                            alt="Product Images">
-                                                    </a>
-                                                </div>
-                                                <div class="thumbnail">
-                                                    <a href="{{asset('/')}}frontend/assets/images/product/product-big-02.png" class="popup-zoom">
-                                                        <img src="{{asset('/')}}frontend/assets/images/product/product-big-02.png"
-                                                            alt="Product Images">
-                                                    </a>
-                                                </div>
+                                                @foreach ($othersImage as $others_Image)
+                                                   <div class="thumbnail">
+                                                        <a href="{{asset($others_Image->image)}}" class="popup-zoom">
+                                                            <img src="{{asset($others_Image->image)}}" alt="Product Images">
+                                                        </a>
+                                                    </div> 
+                                                @endforeach
+                                                
                                             </div>
                                             <div class="label-block">
                                                 <div class="product-badget">20% OFF</div>
                                             </div>
                                             <div class="product-quick-view position-view">
-                                                <a href="{{asset('/')}}frontend/assets/images/product/product-big-01.png" class="popup-zoom">
+                                                <a href="{{asset($product->image)}}" class="popup-zoom">
                                                     <i class="far fa-search-plus"></i>
                                                 </a>
                                             </div>
@@ -54,22 +38,12 @@
                                     </div>
                                     <div class="col-lg-2 order-lg-1">
                                         <div class="product-small-thumb-3 small-thumb-wrapper">
-                                            <div class="small-thumb-img">
-                                                <img src="{{asset('/')}}frontend/assets/images/product/product-thumb/thumb-08.png"
-                                                    alt="thumb image">
-                                            </div>
-                                            <div class="small-thumb-img">
-                                                <img src="{{asset('/')}}frontend/assets/images/product/product-thumb/thumb-07.png"
-                                                    alt="thumb image">
-                                            </div>
-                                            <div class="small-thumb-img">
-                                                <img src="{{asset('/')}}frontend/assets/images/product/product-thumb/thumb-09.png"
-                                                    alt="thumb image">
-                                            </div>
-                                            <div class="small-thumb-img">
-                                                <img src="{{asset('/')}}frontend/assets/images/product/product-thumb/thumb-07.png"
-                                                    alt="thumb image">
-                                            </div>
+                                            @foreach ($othersImage as $othersImage)
+                                                <div class="small-thumb-img">
+                                                    <img src="{{asset($othersImage->image)}}" alt="thumb image">
+                                                </div>
+                                            @endforeach
+                                            
                                         </div>
                                     </div>
                                 </div>
@@ -77,8 +51,8 @@
                             <div class="col-lg-5 mb--40">
                                 <div class="single-product-content">
                                     <div class="inner">
-                                        <h2 class="product-title">3D™ wireless headset</h2>
-                                        <span class="price-amount">$155.00 - $255.00</span>
+                                        <h2 class="product-title">{{$product->name}}</h2>
+                                        <span class="price-amount">{{$product->regular_price}}	&#2547; - {{$product->selling_price}}	&#2547;</span>
                                         <div class="product-rating">
                                             <div class="star-rating">
                                                 <i class="fas fa-star"></i>
@@ -96,9 +70,7 @@
                                             <li><i class="fal fa-check"></i>Free delivery available</li>
                                             <li><i class="fal fa-check"></i>Sales 30% Off Use Code: MOTIVE30</li>
                                         </ul>
-                                        <p class="description">In ornare lorem ut est dapibus, ut tincidunt nisi pretium.
-                                            Integer ante est, elementum eget magna. Pellentesque sagittis dictum libero, eu
-                                            dignissim tellus.</p>
+                                        <p class="description">{{$product->short_description}}</p>
 
                                         <div class="product-variations-wrapper">
 
@@ -182,22 +154,10 @@
                                     <div class="row">
                                         <div class="col-lg-6 mb--30">
                                             <div class="single-desc">
-                                                <h5 class="title">Specifications:</h5>
-                                                <p>We’ve created a full-stack structure for our working workflow processes,
-                                                    were from the funny the century initial all the made, have spare to
-                                                    negatives. But the structure was from the funny the century rather,
-                                                    initial all the made, have spare to negatives.</p>
+                                                {{-- <h5 class="title">Description:</h5> --}}
+                                                <p>{{$product->long_description}}</p>
                                             </div>
                                         </div>
-                                        <!-- End .col-lg-6 -->
-                                        <div class="col-lg-6 mb--30">
-                                            <div class="single-desc">
-                                                <h5 class="title">Care & Maintenance:</h5>
-                                                <p>Use warm water to describe us as a product team that creates amazing
-                                                    UI/UX experiences, by crafting top-notch user experience.</p>
-                                            </div>
-                                        </div>
-                                        <!-- End .col-lg-6 -->
                                     </div>
                                     <!-- End .row -->
                                     <div class="row">

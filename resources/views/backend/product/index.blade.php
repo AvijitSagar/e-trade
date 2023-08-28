@@ -127,6 +127,7 @@
                                         <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 mb-3">
                                             <label for="others_image">Others image</label>
                                             <input type="file" name="others_image[]" accept="image/*" class="form-control" id="others_image" placeholder="" multiple>
+                                            <p class="text-danger pt-2">{{$errors->has('others_image') ? $errors->first('others_image') : ''}}</p>
                                         </div>
                                         <div class="col-xl-12 col-lg-6 col-md-12 col-sm-12 mb-3">
                                             <label for="short_description">Short description</label>

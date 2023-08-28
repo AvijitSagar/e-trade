@@ -128,231 +128,36 @@
                             <h2 class="title">New Arrivals</h2>
                         </div>
                         <div class="new-arrivals-product-activation slick-layout-wrapper--15 axil-slick-arrow  arrow-top-slide">
-                            <div class="slick-single-layout">
-                                <div class="axil-product product-style-four">
-                                    <div class="thumbnail">
-                                        <a href="single-product.html">
-                                            <img data-sal="fade" data-sal-delay="100" data-sal-duration="1500" src="{{asset('/')}}frontend/assets/images/product/fashion/product-1.png" alt="Product Images">
-                                            <img class="hover-img" src="{{asset('/')}}frontend/assets/images/product/fashion/product-4.png" alt="Product Images">
-                                        </a>
-                                        <div class="label-block label-right">
-                                            <div class="product-badget">20% OFF</div>
+                            @foreach ($products as $product)
+                                <div class="slick-single-layout">
+                                    <div class="axil-product product-style-four">
+                                        <div class="thumbnail">
+                                            <a href="{{route('details.product',$product->id)}}">
+                                                <img data-sal="fade" data-sal-delay="100" style="height: 250px"  data-sal-duration="1500" src="{{asset($product->image)}}" alt="Product Images">
+                                            </a>
+                                            <div class="label-block label-right">
+                                                <div class="product-badget">20% OFF</div>
+                                            </div>
+                                            <div class="product-hover-action">
+                                                <ul class="cart-action">
+                                                    <li class="wishlist"><a href="wishlist.html"><i class="far fa-heart"></i></a></li>
+                                                    <li class="select-option"><a href="{{route('cart')}}">Add to Cart</a></li>
+                                                    <li class="quickview"><a href="#" data-bs-toggle="modal" data-bs-target="#quick-view-modal"><i class="far fa-eye"></i></a></li>
+                                                </ul>
+                                            </div>
                                         </div>
-                                        <div class="product-hover-action">
-                                            <ul class="cart-action">
-                                                <li class="wishlist"><a href="wishlist.html"><i class="far fa-heart"></i></a></li>
-                                                <li class="select-option"><a href="{{route('cart')}}">Add to Cart</a></li>
-                                                <li class="quickview"><a href="#" data-bs-toggle="modal" data-bs-target="#quick-view-modal"><i class="far fa-eye"></i></a></li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                    <div class="product-content">
-                                        <div class="inner">
-                                            <h5 class="title"><a href="single-product.html">Top Handle Handbag</a></h5>
-                                            <div class="product-price-variant">
-                                                <span class="price old-price">$80</span>
-                                                <span class="price current-price">$60</span>
+                                        <div class="product-content">
+                                            <div class="inner">
+                                                <h5 class="title"><a href="single-product.html">{{$product->name}}</a></h5>
+                                                <div class="product-price-variant">
+                                                    <span class="price old-price">{{$product->regular_price}}&#2547;</span>
+                                                    <span class="price current-price">{{$product->selling_price}}&#2547;</span>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
-                            <!-- End .slick-single-layout -->
-                            <div class="slick-single-layout">
-                                <div class="axil-product product-style-four">
-                                    <div class="thumbnail">
-                                        <a href="single-product.html">
-                                            <img data-sal="fade" data-sal-delay="200" data-sal-duration="1500" src="{{asset('/')}}frontend/assets/images/product/fashion/product-2.png" alt="Product Images">
-                                            <img class="hover-img" src="{{asset('/')}}frontend/assets/images/product/fashion/product-6.png" alt="Product Images">
-                                        </a>
-                                        <div class="product-hover-action">
-                                            <ul class="cart-action">
-                                                <li class="wishlist"><a href="wishlist.html"><i class="far fa-heart"></i></a></li>
-                                                <li class="select-option"><a href="{{route('cart')}}">Add to Cart</a></li>
-                                                <li class="quickview"><a href="#" data-bs-toggle="modal" data-bs-target="#quick-view-modal"><i class="far fa-eye"></i></a></li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                    <div class="product-content">
-                                        <div class="inner">
-                                            <h5 class="title"><a href="single-product.html">Leather Bag For Men</a></h5>
-                                            <div class="product-price-variant">
-                                                <span class="price old-price">$40</span>
-                                                <span class="price current-price">$40</span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- End .slick-single-layout -->
-                            <div class="slick-single-layout">
-                                <div class="axil-product product-style-four">
-                                    <div class="thumbnail">
-                                        <a href="single-product.html">
-                                            <img data-sal="fade" data-sal-delay="300" data-sal-duration="1500" src="{{asset('/')}}frontend/assets/images/product/fashion/product-3.png" alt="Product Images">
-                                        </a>
-                                        <div class="label-block label-right">
-                                            <div class="product-badget">15% OFF</div>
-                                        </div>
-                                        <div class="product-hover-action">
-                                            <ul class="cart-action">
-                                                <li class="wishlist"><a href="wishlist.html"><i class="far fa-heart"></i></a></li>
-                                                <li class="select-option"><a href="{{route('cart')}}">Add to Cart</a></li>
-                                                <li class="quickview"><a href="#" data-bs-toggle="modal" data-bs-target="#quick-view-modal"><i class="far fa-eye"></i></a></li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                    <div class="product-content">
-                                        <div class="inner">
-                                            <h5 class="title"><a href="single-product.html">Long Sleeve Sweater</a></h5>
-                                            <div class="product-price-variant">
-                                                <span class="price old-price">$30</span>
-                                                <span class="price current-price">$24</span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- End .slick-single-layout -->
-                            <div class="slick-single-layout">
-                                <div class="axil-product product-style-four">
-                                    <div class="thumbnail">
-                                        <a href="single-product.html">
-                                            <img data-sal="fade" data-sal-delay="400" data-sal-duration="1500" src="{{asset('/')}}frontend/assets/images/product/fashion/product-4.png" alt="Product Images">
-                                        </a>
-                                        <div class="label-block label-right">
-                                            <div class="product-badget">30% OFF</div>
-                                        </div>
-                                        <div class="product-hover-action">
-                                            <ul class="cart-action">
-                                                <li class="wishlist"><a href="wishlist.html"><i class="far fa-heart"></i></a></li>
-                                                <li class="select-option"><a href="{{route('cart')}}">Add to Cart</a></li>
-                                                <li class="quickview"><a href="#" data-bs-toggle="modal" data-bs-target="#quick-view-modal"><i class="far fa-eye"></i></a></li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                    <div class="product-content">
-                                        <div class="inner">
-                                            <h5 class="title"><a href="single-product.html">Men's Winter Jacket</a></h5>
-                                            <div class="product-price-variant">
-                                                <span class="price old-price">$50</span>
-                                                <span class="price current-price">$40</span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- End .slick-single-layout -->
-                            <div class="slick-single-layout">
-                                <div class="axil-product product-style-four">
-                                    <div class="thumbnail">
-                                        <a href="single-product.html">
-                                            <img data-sal="fade" data-sal-delay="100" data-sal-duration="1500" src="{{asset('/')}}frontend/assets/images/product/fashion/product-5.png" alt="Product Images">
-                                        </a>
-                                        <div class="product-hover-action">
-                                            <ul class="cart-action">
-                                                <li class="wishlist"><a href="wishlist.html"><i class="far fa-heart"></i></a></li>
-                                                <li class="select-option"><a href="{{route('cart')}}">Add to Cart</a></li>
-                                                <li class="quickview"><a href="#" data-bs-toggle="modal" data-bs-target="#quick-view-modal"><i class="far fa-eye"></i></a></li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                    <div class="product-content">
-                                        <div class="inner">
-                                            <h5 class="title"><a href="single-product.html">Micro Fiber Sheet</a></h5>
-                                            <div class="product-price-variant">
-                                                <span class="price old-price">$60</span>
-                                                <span class="price current-price">$50</span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- End .slick-single-layout -->
-                            <div class="slick-single-layout">
-                                <div class="axil-product product-style-four">
-                                    <div class="thumbnail">
-                                        <a href="single-product.html">
-                                            <img data-sal="fade" data-sal-delay="200" data-sal-duration="1500" src="{{asset('/')}}frontend/assets/images/product/fashion/product-3.png" alt="Product Images">
-                                        </a>
-                                        <div class="label-block label-right">
-                                            <div class="product-badget">15% OFF</div>
-                                        </div>
-                                        <div class="product-hover-action">
-                                            <ul class="cart-action">
-                                                <li class="wishlist"><a href="wishlist.html"><i class="far fa-heart"></i></a></li>
-                                                <li class="select-option"><a href="{{route('cart')}}">Add to Cart</a></li>
-                                                <li class="quickview"><a href="#" data-bs-toggle="modal" data-bs-target="#quick-view-modal"><i class="far fa-eye"></i></a></li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                    <div class="product-content">
-                                        <div class="inner">
-                                            <h5 class="title"><a href="single-product.html">Long Sleeve Sweater</a></h5>
-                                            <div class="product-price-variant">
-                                                <span class="price old-price">$30</span>
-                                                <span class="price current-price">$24</span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- End .slick-single-layout -->
-                            <div class="slick-single-layout">
-                                <div class="axil-product product-style-four">
-                                    <div class="thumbnail">
-                                        <a href="single-product.html">
-                                            <img data-sal="fade" data-sal-delay="300" data-sal-duration="1500" src="{{asset('/')}}frontend/assets/images/product/fashion/product-4.png" alt="Product Images">
-                                        </a>
-                                        <div class="label-block label-right">
-                                            <div class="product-badget">30% OFF</div>
-                                        </div>
-                                        <div class="product-hover-action">
-                                            <ul class="cart-action">
-                                                <li class="wishlist"><a href="wishlist.html"><i class="far fa-heart"></i></a></li>
-                                                <li class="select-option"><a href="{{route('cart')}}">Add to Cart</a></li>
-                                                <li class="quickview"><a href="#" data-bs-toggle="modal" data-bs-target="#quick-view-modal"><i class="far fa-eye"></i></a></li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                    <div class="product-content">
-                                        <div class="inner">
-                                            <h5 class="title"><a href="single-product.html">Men's Winter Jacket</a></h5>
-                                            <div class="product-price-variant">
-                                                <span class="price old-price">$50</span>
-                                                <span class="price current-price">$40</span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- End .slick-single-layout -->
-                            <div class="slick-single-layout">
-                                <div class="axil-product product-style-four">
-                                    <div class="thumbnail">
-                                        <a href="single-product.html">
-                                            <img data-sal="fade" data-sal-delay="400" data-sal-duration="1500" src="{{asset('/')}}frontend/assets/images/product/fashion/product-5.png" alt="Product Images">
-                                        </a>
-                                        <div class="product-hover-action">
-                                            <ul class="cart-action">
-                                                <li class="wishlist"><a href="wishlist.html"><i class="far fa-heart"></i></a></li>
-                                                <li class="select-option"><a href="{{route('cart')}}">Add to Cart</a></li>
-                                                <li class="quickview"><a href="#" data-bs-toggle="modal" data-bs-target="#quick-view-modal"><i class="far fa-eye"></i></a></li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                    <div class="product-content">
-                                        <div class="inner">
-                                            <h5 class="title"><a href="single-product.html">Micro Fiber Sheet</a></h5>
-                                            <div class="product-price-variant">
-                                                <span class="price old-price">$60</span>
-                                                <span class="price current-price">$50</span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- End .slick-single-layout -->
+                            @endforeach
                         </div>
                     </div>
                 </div>
