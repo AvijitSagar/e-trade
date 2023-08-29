@@ -15,10 +15,10 @@
                 <div class="col-lg-2 col-sm-3 col-5">
                     <div class="header-brand">
                         <a href="index.html" class="logo logo-dark">
-                            <img src="{{asset('/')}}frontend/assets/images/logo/logo.png" alt="Site Logo">
+                            <img src="{{ asset('/') }}frontend/assets/images/logo/logo.png" alt="Site Logo">
                         </a>
                         <a href="index.html" class="logo logo-light">
-                            <img src="{{asset('/')}}frontend/assets/images/logo/logo-light.png" alt="Site Logo">
+                            <img src="{{ asset('/') }}frontend/assets/images/logo/logo-light.png" alt="Site Logo">
                         </a>
                     </div>
                 </div>
@@ -28,10 +28,13 @@
                             <button type="submit" class="icon wooc-btn-search">
                                 <i class="far fa-search"></i>
                             </button>
-                            <input type="search" class="placeholder product-search-input" name="search2" id="search2" value="" maxlength="128" placeholder="What are you looking for...." autocomplete="off">
+                            <input type="search" class="placeholder product-search-input" name="search2" id="search2"
+                                value="" maxlength="128" placeholder="What are you looking for...."
+                                autocomplete="off">
                         </div>
                         <div class="dropdown">
-                            <button class="dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            <button class="dropdown-toggle" type="button" data-bs-toggle="dropdown"
+                                aria-expanded="false">
                                 USD
                             </button>
                             <ul class="dropdown-menu">
@@ -41,7 +44,8 @@
                             </ul>
                         </div>
                         <div class="dropdown">
-                            <button class="dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            <button class="dropdown-toggle" type="button" data-bs-toggle="dropdown"
+                                aria-expanded="false">
                                 EN
                             </button>
                             <ul class="dropdown-menu">
@@ -72,52 +76,34 @@
                             <ul class="nav-menu-list">
                                 @foreach ($categories as $category)
                                     <li>
-                                        <a href="#" class="nav-link has-megamenu">
-                                            <span class="menu-icon"><img src="{{asset('/')}}frontend/assets/images/product/categories/cat-01.png" alt="Department"></span>
-                                            <span class="menu-text">{{$category->name}}</span>
+                                        <a href="#" class="nav-link {{count($category->subCategory) > 0 ? 'has-megamenu' : ''}}">
+                                            <span class="menu-icon"><img
+                                                    src="{{ asset('/') }}frontend/assets/images/product/categories/cat-01.png"
+                                                    alt="Department"></span>
+                                            <span class="menu-text">{{ $category->name }}</span>
                                         </a>
-                                        <div class="department-megamenu">
-                                            <div class="department-megamenu-wrap">
-                                                <div class="department-submenu-wrap">
-                                                    <div class="department-submenu">
-                                                        <h3 class="submenu-heading">Men</h3>
-                                                        <ul>
-                                                            <li><a href="{{route('products')}}">T-shirts</a></li>
-                                                            <li><a href="shop-sidebar.html">Shirts</a></li>
-                                                            <li><a href="shop.html">Jeans</a></li>
-                                                        </ul>
-                                                        <h3 class="submenu-heading">Baby</h3>
-                                                        <ul>
-                                                            <li><a href="shop.html">Baby Cloths</a></li>
-                                                            <li><a href="shop-sidebar.html">Baby Gear</a></li>
-                                                            <li><a href="shop.html">Baby Toddler</a></li>
-                                                            <li><a href="shop-sidebar.html">Baby Toys</a></li>
-                                                        </ul>
-                                                    </div>
-                                                </div>
-                                                <div class="featured-product">
-                                                    <h3 class="featured-heading">Featured</h3>
-                                                    <div class="product-list">
-                                                        <div class="item-product">
-                                                            <a href="#"><img src="{{asset('/')}}frontend/assets/images/product/product-feature1.png" alt="Featured Product"></a>
-                                                        </div>
-                                                        <div class="item-product">
-                                                            <a href="#"><img src="{{asset('/')}}frontend/assets/images/product/product-feature2.png" alt="Featured Product"></a>
-                                                        </div>
-                                                        <div class="item-product">
-                                                            <a href="#"><img src="{{asset('/')}}frontend/assets/images/product/product-feature3.png" alt="Featured Product"></a>
-                                                        </div>
-                                                        <div class="item-product">
-                                                            <a href="#"><img src="{{asset('/')}}frontend/assets/images/product/product-feature4.png" alt="Featured Product"></a>
+                                        @if (count($category->subCategory) > 0)
+                                            <div class="department-megamenu">
+                                                <div class="department-megamenu-wrap">
+                                                    <div class="department-submenu-wrap">
+                                                        <div class="department-submenu">
+                                                            <ul>
+                                                                @foreach ($category->subCategory as $subCategory)
+                                                                    <li><a
+                                                                            href="{{ route('products') }}">{{ $subCategory->name }}</a>
+                                                                    </li>
+                                                                @endforeach
+
+                                                            </ul>
                                                         </div>
                                                     </div>
-                                                    <a href="#" class="axil-btn btn-bg-primary">See All Offers</a>
                                                 </div>
                                             </div>
-                                        </div>
+                                        @endif
+
                                     </li>
                                 @endforeach
-                                
+
 
                             </ul>
                         </nav>
@@ -129,7 +115,7 @@
                         <button class="mobile-close-btn mobile-nav-toggler"><i class="fas fa-times"></i></button>
                         <div class="mobile-nav-brand">
                             <a href="index.html" class="logo">
-                                <img src="{{asset('/')}}frontend/assets/images/logo/logo.png" alt="Site Logo">
+                                <img src="{{ asset('/') }}frontend/assets/images/logo/logo.png" alt="Site Logo">
                             </a>
                         </div>
                         <ul class="mainmenu">
@@ -142,7 +128,8 @@
                                     <li><a href="index-4.html">Home - Jewellery</a></li>
                                     <li><a href="index-5.html">Home - Furniture</a></li>
                                     <li><a href="index-7.html">Home - Multipurpose</a></li>
-                                    <li><a href="https://new.axilthemes.com/demo/template/etrade-rtl/">RTL Version</a></li>
+                                    <li><a href="https://new.axilthemes.com/demo/template/etrade-rtl/">RTL Version</a>
+                                    </li>
                                 </ul>
                             </li>
                             <li class="menu-item-has-children">
@@ -163,11 +150,11 @@
                                 <a href="#">Pages</a>
                                 <ul class="axil-submenu">
                                     <li><a href="wishlist.html">Wishlist</a></li>
-                                    <li><a href="{{route('cart')}}">Cart</a></li>
+                                    <li><a href="{{ route('cart') }}">Cart</a></li>
                                     <li><a href="checkout.html">Checkout</a></li>
-                                    <li><a href="{{route('account.user')}}">Account</a></li>
-                                    <li><a href="{{route('register.user')}}">Sign Up</a></li>
-                                    <li><a href="{{route('login.user')}}">Sign In</a></li>
+                                    <li><a href="{{ route('account.user') }}">Account</a></li>
+                                    <li><a href="{{ route('register.user') }}">Sign Up</a></li>
+                                    <li><a href="{{ route('login.user') }}">Sign In</a></li>
                                     <li><a href="forgot-password.html">Forgot Password</a></li>
                                     <li><a href="reset-password.html">Reset Password</a></li>
                                     <li><a href="privacy-policy.html">Privacy Policy</a></li>
@@ -220,7 +207,7 @@
                                 <span class="title">QUICKLINKS</span>
                                 <ul>
                                     <li>
-                                        <a href="{{route('account.user')}}">My Account</a>
+                                        <a href="{{ route('account.user') }}">My Account</a>
                                     </li>
                                     <li>
                                         <a href="#">Initiate return</a>
@@ -233,9 +220,10 @@
                                     </li>
                                 </ul>
                                 <div class="login-btn">
-                                    <a href="{{route('login.user')}}" class="axil-btn btn-bg-primary">Login</a>
+                                    <a href="{{ route('login.user') }}" class="axil-btn btn-bg-primary">Login</a>
                                 </div>
-                                <div class="reg-footer text-center">No account yet? <a href="{{route('register.user')}}" class="btn-link">REGISTER HERE.</a></div>
+                                <div class="reg-footer text-center">No account yet? <a
+                                        href="{{ route('register.user') }}" class="btn-link">REGISTER HERE.</a></div>
                             </div>
                         </li>
                         <li class="axil-mobile-toggle">
