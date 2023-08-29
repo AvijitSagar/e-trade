@@ -70,11 +70,11 @@
                         <nav class="department-nav-menu" id="closeCat">
                             <button class="sidebar-close"><i class="fas fa-times"></i></button>
                             <ul class="nav-menu-list">
-                                {{-- @foreach ($categories as $category) --}}
+                                @foreach ($categories as $category)
                                     <li>
                                         <a href="#" class="nav-link has-megamenu">
                                             <span class="menu-icon"><img src="{{asset('/')}}frontend/assets/images/product/categories/cat-01.png" alt="Department"></span>
-                                            <span class="menu-text"></span>
+                                            <span class="menu-text">{{$category->name}}</span>
                                         </a>
                                         <div class="department-megamenu">
                                             <div class="department-megamenu-wrap">
@@ -116,7 +116,7 @@
                                             </div>
                                         </div>
                                     </li>
-                                {{-- @endforeach --}}
+                                @endforeach
                                 
 
                             </ul>

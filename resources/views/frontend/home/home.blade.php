@@ -128,12 +128,13 @@
                             <h2 class="title">New Arrivals</h2>
                         </div>
                         <div class="new-arrivals-product-activation slick-layout-wrapper--15 axil-slick-arrow  arrow-top-slide">
-                            @foreach ($products as $product)
+
+                            @foreach ($new_arraival_products as $new_arraival_product)
                                 <div class="slick-single-layout">
                                     <div class="axil-product product-style-four">
                                         <div class="thumbnail">
-                                            <a href="{{route('details.product',$product->id)}}">
-                                                <img data-sal="fade" data-sal-delay="100" style="height: 250px"  data-sal-duration="1500" src="{{asset($product->image)}}" alt="Product Images">
+                                            <a href="{{route('details.product',$new_arraival_product->id)}}">
+                                                <img data-sal="fade" data-sal-delay="100" style="height: 250px"  data-sal-duration="1500" src="{{asset($new_arraival_product->image)}}" alt="Product Images">
                                             </a>
                                             <div class="label-block label-right">
                                                 <div class="product-badget">20% OFF</div>
@@ -148,16 +149,17 @@
                                         </div>
                                         <div class="product-content">
                                             <div class="inner">
-                                                <h5 class="title"><a href="single-product.html">{{$product->name}}</a></h5>
+                                                <h5 class="title"><a href="{{route('details.product',$new_arraival_product->id)}}">{{$new_arraival_product->name}}</a></h5>
                                                 <div class="product-price-variant">
-                                                    <span class="price old-price">{{$product->regular_price}}&#2547;</span>
-                                                    <span class="price current-price">{{$product->selling_price}}&#2547;</span>
+                                                    <span class="price old-price">{{$new_arraival_product->regular_price}}&#2547;</span>
+                                                    <span class="price current-price">{{$new_arraival_product->selling_price}}&#2547;</span>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                             @endforeach
+
                         </div>
                     </div>
                 </div>
@@ -477,297 +479,42 @@
                     <div class="explore-product-activation slick-layout-wrapper slick-layout-wrapper--15 axil-slick-arrow arrow-top-slide">
                         <div class="slick-single-layout">
                             <div class="row row--15">
-                                <div class="col-xl-3 col-lg-4 col-sm-6 col-12 mb--30">
-                                    <div class="axil-product product-style-one">
-                                        <div class="thumbnail">
-                                            <a href="single-product.html">
-                                                <img data-sal="fade" data-sal-delay="100" data-sal-duration="1500" src="{{asset('/')}}frontend/assets/images/product/fashion/product-8.png" alt="Product Images">
-                                            </a>
-                                            <div class="label-block label-right">
-                                                <div class="product-badget">20% Off</div>
-                                            </div>
-                                            <div class="product-hover-action">
-                                                <ul class="cart-action">
-                                                    <li class="quickview"><a href="#" data-bs-toggle="modal" data-bs-target="#quick-view-modal"><i class="far fa-eye"></i></a></li>
-                                                    <li class="select-option"><a href="{{route('cart')}}">Add to Cart</a></li>
-                                                    <li class="wishlist"><a href="wishlist.html"><i class="far fa-heart"></i></a></li>
-                                                </ul>
-                                            </div>
-                                        </div>
-                                        <div class="product-content">
-                                            <div class="inner">
-                                                <h5 class="title"><a href="single-product.html">Leather Jacket</a></h5>
-                                                <div class="product-price-variant">
-                                                    <span class="price current-price">$29.99</span>
-                                                    <span class="price old-price">$49.99</span>
+
+                                @foreach ($explore_products as $explore_product)
+                                    <div class="col-xl-3 col-lg-4 col-sm-6 col-12 mb--30">
+                                        <div class="axil-product product-style-one">
+                                            <div class="thumbnail">
+                                                <a href="{{route('details.product', $explore_product->id)}}">
+                                                    <img data-sal="fade" data-sal-delay="100" data-sal-duration="1500" src="{{asset($explore_product->image)}}" alt="Product Images">
+                                                </a>
+                                                <div class="label-block label-right">
+                                                    <div class="product-badget">20% Off</div>
                                                 </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <!-- End Single Product  -->
-                                <div class="col-xl-3 col-lg-4 col-sm-6 col-12 mb--30">
-                                    <div class="axil-product product-style-one">
-                                        <div class="thumbnail">
-                                            <a href="single-product.html">
-                                                <img data-sal="fade" data-sal-delay="200" data-sal-duration="1500" src="{{asset('/')}}frontend/assets/images/product/fashion/product-7.png" alt="Product Images">
-                                            </a>
-                                            <div class="product-hover-action">
-                                                <ul class="cart-action">
-                                                    <li class="quickview"><a href="#" data-bs-toggle="modal" data-bs-target="#quick-view-modal"><i class="far fa-eye"></i></a></li>
-                                                    <li class="select-option"><a href="single-product.html">Select Option</a></li>
-                                                    <li class="wishlist"><a href="wishlist.html"><i class="far fa-heart"></i></a></li>
-                                                </ul>
-                                            </div>
-                                        </div>
-                                        <div class="product-content">
-                                            <div class="inner">
-                                                <h5 class="title"><a href="single-product.html">Men's Stylish Hat</a></h5>
-                                                <div class="product-price-variant">
-                                                    <span class="price current-price">$25.00</span>
-                                                    <span class="price old-price">$35.99</span>
-                                                </div>
-                                                <div class="color-variant-wrapper">
-                                                    <ul class="color-variant">
-                                                        <li class="color-extra-01 active"><span><span class="color"></span></span>
-                                                        </li>
-                                                        <li class="color-extra-02"><span><span class="color"></span></span>
-                                                        </li>
-                                                        <li class="color-extra-03"><span><span class="color"></span></span>
-                                                        </li>
+                                                <div class="product-hover-action">
+                                                    <ul class="cart-action">
+                                                        <li class="quickview"><a href="#" data-bs-toggle="modal" data-bs-target="#quick-view-modal"><i class="far fa-eye"></i></a></li>
+                                                        <li class="select-option"><a href="{{route('cart')}}">Add to Cart</a></li>
+                                                        <li class="wishlist"><a href="wishlist.html"><i class="far fa-heart"></i></a></li>
                                                     </ul>
                                                 </div>
                                             </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <!-- End Single Product  -->
-                                <div class="col-xl-3 col-lg-4 col-sm-6 col-12 mb--30">
-                                    <div class="axil-product product-style-one">
-                                        <div class="thumbnail">
-                                            <a href="single-product.html">
-                                                <img data-sal="fade" data-sal-delay="300" data-sal-duration="1500" src="{{asset('/')}}frontend/assets/images/product/fashion/product-6.png" alt="Product Images">
-                                            </a>
-                                            <div class="label-block label-right">
-                                                <div class="product-badget">20% Off</div>
-                                            </div>
-                                            <div class="product-hover-action">
-                                                <ul class="cart-action">
-                                                    <li class="quickview"><a href="#" data-bs-toggle="modal" data-bs-target="#quick-view-modal"><i class="far fa-eye"></i></a></li>
-                                                    <li class="select-option"><a href="{{route('cart')}}">Add to Cart</a></li>
-                                                    <li class="wishlist"><a href="wishlist.html"><i class="far fa-heart"></i></a></li>
-                                                </ul>
-                                            </div>
-                                        </div>
-                                        <div class="product-content">
-                                            <div class="inner">
-                                                <h5 class="title"><a href="single-product.html">Women's Stylish Hat</a></h5>
-                                                <div class="product-price-variant">
-                                                    <span class="price current-price">$29.99</span>
-                                                    <span class="price old-price">$49.99</span>
-                                                </div>
-                                                <div class="color-variant-wrapper">
-                                                    <ul class="color-variant">
-                                                        <li class="color-extra-01 active"><span><span class="color"></span></span>
-                                                        </li>
-                                                        <li class="color-extra-02"><span><span class="color"></span></span>
-                                                        </li>
-                                                        <li class="color-extra-03"><span><span class="color"></span></span>
-                                                        </li>
-                                                    </ul>
+                                            <div class="product-content">
+                                                <div class="inner">
+                                                    <h5 class="title"><a href="single-product.html">{{$explore_product->name}}</a></h5>
+                                                    <div class="product-price-variant">
+                                                        <span class="price current-price">{{$explore_product->selling_price}}&#2547;</span>
+                                                        <span class="price old-price">{{$explore_product->regular_price}}&#2547;</span>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
-                                    </div>
-                                </div>
-                                <!-- End Single Product  -->
-                                <div class="col-xl-3 col-lg-4 col-sm-6 col-12 mb--30">
-                                    <div class="axil-product product-style-one">
-                                        <div class="thumbnail">
-                                            <a href="single-product.html">
-                                                <img data-sal="fade" data-sal-delay="400" data-sal-duration="1500" src="{{asset('/')}}frontend/assets/images/product/fashion/product-5.png" alt="Product Images">
-                                            </a>
-                                            <div class="product-hover-action">
-                                                <ul class="cart-action">
-                                                    <li class="quickview"><a href="#" data-bs-toggle="modal" data-bs-target="#quick-view-modal"><i class="far fa-eye"></i></a></li>
-                                                    <li class="select-option"><a href="{{route('cart')}}">Add to Cart</a></li>
-                                                    <li class="wishlist"><a href="wishlist.html"><i class="far fa-heart"></i></a></li>
-                                                </ul>
-                                            </div>
-                                        </div>
-                                        <div class="product-content">
-                                            <div class="inner">
-                                                <h5 class="title"><a href="single-product.html">Solid A Line Dress</a></h5>
-                                                <div class="product-price-variant">
-                                                    <span class="price current-price">$100.00</span>
-                                                    <span class="price old-price">$150.00</span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <!-- End Single Product  -->
-                                <div class="col-xl-3 col-lg-4 col-sm-6 col-12 mb--30">
-                                    <div class="axil-product product-style-one">
-                                        <div class="thumbnail">
-                                            <a href="single-product.html">
-                                                <img data-sal="fade" data-sal-delay="100" data-sal-duration="1500" src="{{asset('/')}}frontend/assets/images/product/fashion/product-4.png" alt="Product Images">
-                                            </a>
-                                            <div class="label-block label-right">
-                                                <div class="product-badget">20% Off</div>
-                                            </div>
-                                            <div class="product-hover-action">
-                                                <ul class="cart-action">
-                                                    <li class="quickview"><a href="#" data-bs-toggle="modal" data-bs-target="#quick-view-modal"><i class="far fa-eye"></i></a></li>
-                                                    <li class="select-option"><a href="{{route('cart')}}">Add to Cart</a></li>
-                                                    <li class="wishlist"><a href="wishlist.html"><i class="far fa-heart"></i></a></li>
-                                                </ul>
-                                            </div>
-                                        </div>
-                                        <div class="product-content">
-                                            <div class="inner">
-                                                <h5 class="title"><a href="single-product.html">Denim Jacket</a></h5>
-                                                <div class="product-price-variant">
-                                                    <span class="price current-price">$50.00</span>
-                                                    <span class="price old-price">$89.99</span>
-                                                </div>
-                                                <div class="color-variant-wrapper">
-                                                    <ul class="color-variant">
-                                                        <li class="color-extra-01 active"><span><span class="color"></span></span>
-                                                        </li>
-                                                        <li class="color-extra-02"><span><span class="color"></span></span>
-                                                        </li>
-                                                        <li class="color-extra-03"><span><span class="color"></span></span>
-                                                        </li>
-                                                    </ul>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <!-- End Single Product  -->
-                                <div class="col-xl-3 col-lg-4 col-sm-6 col-12 mb--30">
-                                    <div class="axil-product product-style-one">
-                                        <div class="thumbnail">
-                                            <a href="single-product.html">
-                                                <img data-sal="fade" data-sal-delay="200" data-sal-duration="1500" src="{{asset('/')}}frontend/assets/images/product/fashion/product-3.png" alt="Product Images">
-                                            </a>
-                                            <div class="label-block label-right">
-                                                <div class="product-badget">20% Off</div>
-                                            </div>
-                                            <div class="product-hover-action">
-                                                <ul class="cart-action">
-                                                    <li class="quickview"><a href="#" data-bs-toggle="modal" data-bs-target="#quick-view-modal"><i class="far fa-eye"></i></a></li>
-                                                    <li class="select-option"><a href="{{route('cart')}}">Add to Cart</a></li>
-                                                    <li class="wishlist"><a href="wishlist.html"><i class="far fa-heart"></i></a></li>
-                                                </ul>
-                                            </div>
-                                        </div>
-                                        <div class="product-content">
-                                            <div class="inner">
-                                                <h5 class="title"><a href="single-product.html">Leather Bag</a></h5>
-                                                <div class="product-price-variant">
-                                                    <span class="price current-price">$99.99</span>
-                                                    <span class="price old-price">$149.99</span>
-                                                </div>
-                                                <div class="color-variant-wrapper">
-                                                    <ul class="color-variant">
-                                                        <li class="color-extra-01 active"><span><span class="color"></span></span>
-                                                        </li>
-                                                        <li class="color-extra-02"><span><span class="color"></span></span>
-                                                        </li>
-                                                        <li class="color-extra-03"><span><span class="color"></span></span>
-                                                        </li>
-                                                    </ul>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <!-- End Single Product  -->
-                                <div class="col-xl-3 col-lg-4 col-sm-6 col-12 mb--30">
-                                    <div class="axil-product product-style-one">
-                                        <div class="thumbnail">
-                                            <a href="single-product.html">
-                                                <img data-sal="fade" data-sal-delay="300" data-sal-duration="1500" src="{{asset('/')}}frontend/assets/images/product/fashion/product-2.png" alt="Product Images">
-                                            </a>
-                                            <div class="label-block label-right">
-                                                <div class="product-badget">20% Off</div>
-                                            </div>
-                                            <div class="product-hover-action">
-                                                <ul class="cart-action">
-                                                    <li class="quickview"><a href="#" data-bs-toggle="modal" data-bs-target="#quick-view-modal"><i class="far fa-eye"></i></a></li>
-                                                    <li class="select-option"><a href="single-product.html">Select Option</a></li>
-                                                    <li class="wishlist"><a href="wishlist.html"><i class="far fa-heart"></i></a></li>
-                                                </ul>
-                                            </div>
-                                        </div>
-                                        <div class="product-content">
-                                            <div class="inner">
-                                                <h5 class="title"><a href="single-product.html">Women's Jacket</a></h5>
-                                                <div class="product-price-variant">
-                                                    <span class="price current-price">$29.99</span>
-                                                    <span class="price old-price">$49.99</span>
-                                                </div>
-                                                <div class="color-variant-wrapper">
-                                                    <ul class="color-variant">
-                                                        <li class="color-extra-01 active"><span><span class="color"></span></span>
-                                                        </li>
-                                                        <li class="color-extra-02"><span><span class="color"></span></span>
-                                                        </li>
-                                                        <li class="color-extra-03"><span><span class="color"></span></span>
-                                                        </li>
-                                                    </ul>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <!-- End Single Product  -->
-                                <div class="col-xl-3 col-lg-4 col-sm-6 col-12 mb--30">
-                                    <div class="axil-product product-style-one">
-                                        <div class="thumbnail">
-                                            <a href="single-product.html">
-                                                <img data-sal="fade" data-sal-delay="400" data-sal-duration="1500" src="{{asset('/')}}frontend/assets/images/product/fashion/product-1.png" alt="Product Images">
-                                            </a>
-                                            <div class="label-block label-right">
-                                                <div class="product-badget">20% Off</div>
-                                            </div>
-                                            <div class="product-hover-action">
-                                                <ul class="cart-action">
-                                                    <li class="quickview"><a href="#" data-bs-toggle="modal" data-bs-target="#quick-view-modal"><i class="far fa-eye"></i></a></li>
-                                                    <li class="select-option"><a href="{{route('cart')}}">Add to Cart</a></li>
-                                                    <li class="wishlist"><a href="wishlist.html"><i class="far fa-heart"></i></a></li>
-                                                </ul>
-                                            </div>
-                                        </div>
-                                        <div class="product-content">
-                                            <div class="inner">
-                                                <h5 class="title"><a href="single-product.html">Men's Tshirt</a></h5>
-                                                <div class="product-price-variant">
-                                                    <span class="price current-price">$29.99</span>
-                                                    <span class="price old-price">$39.99</span>
-                                                </div>
-                                                <div class="color-variant-wrapper">
-                                                    <ul class="color-variant">
-                                                        <li class="color-extra-01 active"><span><span class="color"></span></span>
-                                                        </li>
-                                                        <li class="color-extra-02"><span><span class="color"></span></span>
-                                                        </li>
-                                                        <li class="color-extra-03"><span><span class="color"></span></span>
-                                                        </li>
-                                                    </ul>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <!-- End Single Product  -->
-    
+                                    </div>  
+                                @endforeach
+                            
                             </div>
                         </div>
                         <!-- End .slick-single-layout -->
-                        <div class="slick-single-layout">
+                        {{-- <div class="slick-single-layout">
                             <div class="row row--15">
                                 <div class="col-xl-3 col-lg-4 col-sm-6 col-12 mb--30">
                                     <div class="axil-product product-style-one">
@@ -1057,12 +804,12 @@
                                 <!-- End Single Product  -->
     
                             </div>
-                        </div>
+                        </div> --}}
                         <!-- End .slick-single-layout -->
                     </div>
                     <div class="row">
                         <div class="col-lg-12 text-center mt--20 mt_sm--0">
-                            <a href="shop.html" class="axil-btn btn-bg-lighter btn-load-more">View All Products</a>
+                            <a href="{{route('products')}}" class="axil-btn btn-bg-lighter btn-load-more">View All Products</a>
                         </div>
                     </div>
     

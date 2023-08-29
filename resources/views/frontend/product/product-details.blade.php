@@ -52,7 +52,7 @@
                                 <div class="single-product-content">
                                     <div class="inner">
                                         <h2 class="product-title">{{$product->name}}</h2>
-                                        <span class="price-amount">{{$product->regular_price}}	&#2547; - {{$product->selling_price}}	&#2547;</span>
+                                        <span class="price-amount">{{$product->regular_price}}&#2547; - {{$product->selling_price}}&#2547;</span>
                                         <div class="product-rating">
                                             <div class="star-rating">
                                                 <i class="fas fa-star"></i>
@@ -152,10 +152,10 @@
                                 aria-labelledby="description-tab">
                                 <div class="product-desc-wrapper">
                                     <div class="row">
-                                        <div class="col-lg-6 mb--30">
+                                        <div class="col-lg-12 mb--30">
                                             <div class="single-desc">
                                                 {{-- <h5 class="title">Description:</h5> --}}
-                                                <p>{{$product->long_description}}</p>
+                                                <p>{!! $product->long_description !!}</p>
                                             </div>
                                         </div>
                                     </div>

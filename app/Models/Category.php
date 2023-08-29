@@ -28,4 +28,8 @@ class Category extends Model
         self::$category = Category::find($id);
         self::$category->delete();
     }
+
+    public function subCategory(){
+        return $this->hasMany(SubCategory::class);
+    }
 }

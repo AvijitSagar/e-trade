@@ -12,19 +12,25 @@ class HomeController extends Controller
 {
     public function index(){
         return view('frontend.home.home',[
-            'categories' => Category::all(),
             'subCategories' => SubCategory::all(),
-            'products' => Product::all()
+            'new_arraival_products' => Product::where('featured_status', 1)->get(),
+            'explore_products' => Product::where('featured_status', 0)->get()
         ]);
     }
     public function products(){
-        return view('frontend.product.product');
+        return view('frontend.product.product',[
+            'products' => Product::all()
+        ]);
     }
     public function productDetails($id){
         return view('frontend.product.product-details',[
             'product' => Product::find($id),
-            'categories' => Category::all(),
             'othersImage' =>OthersImage::where('product_id', $id)->get()
+        ]);
+    }
+    public function categoryWiseProducts($id){
+        return view('frontend.category.index',[
+            'products' => Product::where('category_id', $id)->get()
         ]);
     }
     public function cart(){
