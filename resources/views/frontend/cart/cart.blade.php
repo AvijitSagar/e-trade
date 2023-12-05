@@ -23,64 +23,51 @@
                                         <th scope="col" class="product-remove"></th>
                                         <th scope="col" class="product-thumbnail">Product</th>
                                         <th scope="col" class="product-title"></th>
+                                        <th scope="col" class="product-price">Category</th>
+                                        <th scope="col" class="product-price">Brand</th>
                                         <th scope="col" class="product-price">Price</th>
                                         <th scope="col" class="product-quantity">Quantity</th>
-                                        <th scope="col" class="product-subtotal">Subtotal</th>
+                                        <th scope="col" class="product-subtotal">Total</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr>
-                                        <td class="product-remove"><a href="#" class="remove-wishlist"><i
-                                                    class="fal fa-times"></i></a></td>
-                                        <td class="product-thumbnail"><a href="single-product.html"><img
-                                                    src="{{asset('/')}}frontend/assets/images/product/electric/product-01.png"
-                                                    alt="Digital Product"></a></td>
-                                        <td class="product-title"><a href="single-product.html">Wireless PS Handler</a></td>
-                                        <td class="product-price" data-title="Price"><span
-                                                class="currency-symbol">$</span>124.00</td>
-                                        <td class="product-quantity" data-title="Qty">
-                                            <div class="pro-qty">
-                                                <input type="number" class="quantity-input" value="1">
-                                            </div>
-                                        </td>
-                                        <td class="product-subtotal" data-title="Subtotal"><span
-                                                class="currency-symbol">$</span>275.00</td>
-                                    </tr>
-                                    <tr>
-                                        <td class="product-remove"><a href="#" class="remove-wishlist"><i
-                                                    class="fal fa-times"></i></a></td>
-                                        <td class="product-thumbnail"><a href="single-product-2.html"><img
-                                                    src="{{asset('/')}}frontend/assets/images/product/electric/product-02.png"
-                                                    alt="Digital Product"></a></td>
-                                        <td class="product-title"><a href="single-product-2.html">Gradient Light
-                                                Keyboard</a></td>
-                                        <td class="product-price" data-title="Price"><span
-                                                class="currency-symbol">$</span>124.00</td>
-                                        <td class="product-quantity" data-title="Qty">
-                                            <div class="pro-qty">
-                                                <input type="number" class="quantity-input" value="1">
-                                            </div>
-                                        </td>
-                                        <td class="product-subtotal" data-title="Subtotal"><span
-                                                class="currency-symbol">$</span>275.00</td>
-                                    </tr>
-                                    <tr>
-                                        <td class="product-remove"><a href="#" class="remove-wishlist"><i
-                                                    class="fal fa-times"></i></a></td>
-                                        <td class="product-thumbnail"><a href="single-product-3.html"><img
-                                                    src="{{asset('/')}}frontend/assets/images/product/electric/product-03.png"
-                                                    alt="Digital Product"></a></td>
-                                        <td class="product-title"><a href="single-product-3.html">HD CC Camera</a></td>
-                                        <td class="product-price" data-title="Price"><span
-                                                class="currency-symbol">$</span>124.00</td>
-                                        <td class="product-quantity" data-title="Qty">
-                                            <div class="pro-qty">
-                                                <input type="number" class="quantity-input" value="1">
-                                            </div>
-                                        </td>
-                                        <td class="product-subtotal" data-title="Subtotal"><span
-                                                class="currency-symbol">$</span>275.00</td>
-                                    </tr>
+                                    {{-- showing cart item --}}
+                                    @php($sum = 0)
+                                    @foreach ($cartProducts as $cartProduct)
+                                        <tr>
+                                            <td class="product-remove">
+                                                <a href="#" class="remove-wishlist">
+                                                    <i class="fal fa-times"></i>
+                                                </a>
+                                            </td>
+                                            <td class="product-thumbnail">
+                                                <a href="single-product.html">
+                                                    <img src="{{asset($cartProduct->options->image)}}" alt="Product Image">
+                                                </a>
+                                            </td>
+                                            <td class="product-title">
+                                                <a href="single-product.html">{{$cartProduct->name}}</a>
+                                            </td>
+                                            <td class="product-title">
+                                                <a href="single-product.html">{{$cartProduct->options->category}}</a>
+                                            </td>
+                                            <td class="product-title">
+                                                <a href="single-product.html">{{$cartProduct->options->brand}}</a>
+                                            </td>
+                                            <td class="product-price" data-title="Price">
+                                                <span class="currency-symbol">&#2547;</span>{{$cartProduct->price}}
+                                            </td>
+                                            <td class="product-quantity" data-title="Qty">
+                                                <div class="pro-qty">
+                                                    <input type="number" class="quantity-input" value="{{$cartProduct->qty}}">
+                                                </div>
+                                            </td>
+                                            <td class="product-subtotal" data-title="Subtotal">
+                                                <span class="currency-symbol">&#2547;</span>{{$cartProduct->price * $cartProduct->qty}}
+                                            </td>
+                                        </tr>
+                                    @php($sum = $sum + ($cartProduct->price * $cartProduct->qty))
+                                    @endforeach
                                 </tbody>
                             </table>
                         </div>
@@ -104,7 +91,7 @@
                                             <tbody>
                                                 <tr class="order-subtotal">
                                                     <td>Subtotal</td>
-                                                    <td>$117.00</td>
+                                                    <td>&#2547; {{number_format($sum)}}</td>
                                                 </tr>
                                                 <tr class="order-shipping">
                                                     <td>Shipping</td>
@@ -115,27 +102,24 @@
                                                         </div>
                                                         <div class="input-group">
                                                             <input type="radio" id="radio2" name="shipping">
-                                                            <label for="radio2">Local: $35.00</label>
-                                                        </div>
-                                                        <div class="input-group">
-                                                            <input type="radio" id="radio3" name="shipping">
-                                                            <label for="radio3">Flat rate: $12.00</label>
+                                                            <label for="radio2">Local: &#2547;{{$shipping = 120}}</label>
                                                         </div>
                                                     </td>
                                                 </tr>
                                                 <tr class="order-tax">
-                                                    <td>State Tax</td>
-                                                    <td>$8.00</td>
+                                                    @php($tax = $sum * 0.07)
+                                                    <td>Tax 7%</td>
+                                                    <td>&#2547; {{$tax}}</td>
                                                 </tr>
                                                 <tr class="order-total">
+                                                    @php($total = $sum + $shipping + $tax)
                                                     <td>Total</td>
-                                                    <td class="order-total-amount">$125.00</td>
+                                                    <td class="order-total-amount"> &#2547; {{number_format(round($total))}}</td>
                                                 </tr>
                                             </tbody>
                                         </table>
                                     </div>
-                                    <a href="{{route('checkout')}}" class="axil-btn btn-bg-primary checkout-btn">Process to
-                                        Checkout</a>
+                                    <a href="{{route('checkout')}}" class="axil-btn btn-bg-primary checkout-btn">Process to Checkout</a>
                                 </div>
                             </div>
                         </div>

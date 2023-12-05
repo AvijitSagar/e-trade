@@ -33,9 +33,7 @@ class HomeController extends Controller
             'products' => Product::where('category_id', $id)->get()
         ]);
     }
-    public function cart(){
-        return view('frontend.cart.cart');
-    }
+    
     public function checkout(){
         return view('frontend.checkout.checkout');
     }

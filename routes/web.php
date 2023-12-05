@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\BrandController;
+use App\Http\Controllers\CartController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\HomeController;
@@ -29,7 +30,13 @@ Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::get('/products', [HomeController::class, 'products'])->name('products');
 Route::get('/product/{id}/details', [HomeController::class, 'productDetails'])->name('details.product');
 Route::get('/category/{id}/products', [HomeController::class, 'categoryWiseProducts'])->name('category.wise.products');
-Route::get('/cart', [HomeController::class, 'cart'])->name('cart');
+
+Route::post('/add-to-cart/{id}', [CartController::class, 'index'])->name('cart.add');
+Route::get('/shopping-cart', [CartController::class, 'show'])->name('cart.show');
+
+Route::get('/cart', [CartController::class, 'cart'])->name('cart');
+
+
 Route::get('/checkout', [HomeController::class, 'checkout'])->name('checkout');
 Route::get('/user/login', [HomeController::class, 'userLogin'])->name('login.user');
 Route::get('/user/register', [HomeController::class, 'userRegister'])->name('register.user');
