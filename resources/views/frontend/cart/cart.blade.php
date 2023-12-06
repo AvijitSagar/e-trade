@@ -14,6 +14,7 @@
                     <div class="axil-product-cart-wrap">
                         <div class="product-table-heading">
                             <h4 class="title">Your Cart</h4>
+                            <p class="text-success text">{{session('message')}}</p>
                             <a href="#" class="cart-clear">Clear Shoping Cart</a>
                         </div>
                         <div class="table-responsive">
@@ -23,8 +24,8 @@
                                         <th scope="col" class="product-remove"></th>
                                         <th scope="col" class="product-thumbnail">Product</th>
                                         <th scope="col" class="product-title"></th>
-                                        <th scope="col" class="product-price">Category</th>
-                                        <th scope="col" class="product-price">Brand</th>
+                                        <th scope="col" class="product-category">Category</th>
+                                        <th scope="col" class="product-brand">Brand</th>
                                         <th scope="col" class="product-price">Price</th>
                                         <th scope="col" class="product-quantity">Quantity</th>
                                         <th scope="col" class="product-subtotal">Total</th>
@@ -46,7 +47,7 @@
                                                 </a>
                                             </td>
                                             <td class="product-title">
-                                                <a href="single-product.html">{{$cartProduct->name}}</a>
+                                                <a href="{{route('details.product', $cartProduct->id)}}">{{$cartProduct->name}}</a>
                                             </td>
                                             <td class="product-title">
                                                 <a href="single-product.html">{{$cartProduct->options->category}}</a>
@@ -58,9 +59,13 @@
                                                 <span class="currency-symbol">&#2547;</span>{{$cartProduct->price}}
                                             </td>
                                             <td class="product-quantity" data-title="Qty">
-                                                <div class="pro-qty">
-                                                    <input type="number" class="quantity-input" value="{{$cartProduct->qty}}">
-                                                </div>
+                                                <form action="{{route('cart.update', $cartProduct->rowId)}}" method="POST">
+                                                    @csrf
+                                                    <div class="pro-qty">
+                                                        <input type="number" name="qty" min="1" class="quantity-input" value="{{$cartProduct->qty}}">
+                                                    </div>
+                                                    <button type="submit" class="btn btn-success">Update</button>
+                                                </form>
                                             </td>
                                             <td class="product-subtotal" data-title="Subtotal">
                                                 <span class="currency-symbol">&#2547;</span>{{$cartProduct->price * $cartProduct->qty}}
