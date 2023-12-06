@@ -14,10 +14,10 @@
             <div class="row align-items-center">
                 <div class="col-lg-2 col-sm-3 col-5">
                     <div class="header-brand">
-                        <a href="index.html" class="logo logo-dark">
+                        <a href="{{route('home')}}" class="logo logo-dark">
                             <img src="{{ asset('/') }}frontend/assets/images/logo/logo.png" alt="Site Logo">
                         </a>
-                        <a href="index.html" class="logo logo-light">
+                        <a href="{{route('home')}}" class="logo logo-light">
                             <img src="{{ asset('/') }}frontend/assets/images/logo/logo-light.png" alt="Site Logo">
                         </a>
                     </div>

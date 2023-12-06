@@ -34,9 +34,6 @@ class HomeController extends Controller
         ]);
     }
     
-    public function checkout(){
-        return view('frontend.checkout.checkout');
-    }
     public function userLogin(){
         return view('frontend.user.user-login');
     }

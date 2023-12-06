@@ -3,6 +3,7 @@
 use App\Http\Controllers\BrandController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\CheckoutController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ProductController;
@@ -38,7 +39,7 @@ Route::post('/update-shopping-cart/{id}', [CartController::class, 'update'])->na
 Route::get('/cart', [CartController::class, 'cart'])->name('cart');
 
 
-Route::get('/checkout', [HomeController::class, 'checkout'])->name('checkout');
+Route::get('/check-out', [CheckoutController::class, 'index'])->name('checkout');
 Route::get('/user/login', [HomeController::class, 'userLogin'])->name('login.user');
 Route::get('/user/register', [HomeController::class, 'userRegister'])->name('register.user');
 Route::get('/user/password/recovery', [HomeController::class, 'userFrogotPassword'])->name('recover.password.user');

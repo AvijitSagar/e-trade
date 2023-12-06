@@ -42,7 +42,7 @@
                                                 </a>
                                             </td>
                                             <td class="product-thumbnail">
-                                                <a href="single-product.html">
+                                                <a href="{{route('details.product', $cartProduct->id)}}">
                                                     <img src="{{asset($cartProduct->options->image)}}" alt="Product Image">
                                                 </a>
                                             </td>
@@ -64,7 +64,7 @@
                                                     <div class="pro-qty">
                                                         <input type="number" name="qty" min="1" class="quantity-input" value="{{$cartProduct->qty}}">
                                                     </div>
-                                                    <button type="submit" class="btn btn-success">Update</button>
+                                                    <button type="submit" class="btn btn-lg btn-success">Update</button>
                                                 </form>
                                             </td>
                                             <td class="product-subtotal" data-title="Subtotal">
@@ -102,11 +102,11 @@
                                                     <td>Shipping</td>
                                                     <td>
                                                         <div class="input-group">
-                                                            <input type="radio" id="radio1" name="shipping" checked>
+                                                            <input type="radio" id="radio1" name="shipping">
                                                             <label for="radio1">Free Shippping</label>
                                                         </div>
                                                         <div class="input-group">
-                                                            <input type="radio" id="radio2" name="shipping">
+                                                            <input type="radio" id="radio2" name="shipping" checked >
                                                             <label for="radio2">Local: &#2547;{{$shipping = 120}}</label>
                                                         </div>
                                                     </td>
