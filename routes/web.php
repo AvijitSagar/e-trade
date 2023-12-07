@@ -34,6 +34,7 @@ Route::get('/category/{id}/products', [HomeController::class, 'categoryWiseProdu
 
 Route::post('/add-to-cart/{id}', [CartController::class, 'index'])->name('cart.add');
 Route::get('/shopping-cart', [CartController::class, 'show'])->name('cart.show');
+Route::get('/delete-shopping-cart/{id}', [CartController::class, 'delete'])->name('cart.delete');
 Route::post('/update-shopping-cart/{id}', [CartController::class, 'update'])->name('cart.update');
 
 Route::get('/cart', [CartController::class, 'cart'])->name('cart');

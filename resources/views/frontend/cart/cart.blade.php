@@ -14,7 +14,16 @@
                     <div class="axil-product-cart-wrap">
                         <div class="product-table-heading">
                             <h4 class="title">Your Cart</h4>
-                            <p class="text-success text">{{session('message')}}</p>
+                            {{-- <p class="text-success text">{{session('message')}}</p> --}}
+                            @if (session('message'))
+                                <div class="col-md-8 mx-auto text-center">
+                                    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                                        <strong>{{ session('message') }}</strong>
+                                        <button type="button" class="btn-close" data-bs-dismiss="alert"
+                                            aria-label="Close"></button>
+                                    </div>
+                                </div>
+                            @endif
                             <a href="#" class="cart-clear">Clear Shoping Cart</a>
                         </div>
                         <div class="table-responsive">
@@ -37,41 +46,47 @@
                                     @foreach ($cartProducts as $cartProduct)
                                         <tr>
                                             <td class="product-remove">
-                                                <a href="#" class="remove-wishlist">
+                                                <a href="{{ route('cart.delete', $cartProduct->rowId) }}" class="remove-wishlist" onclick="return confirm('Delete {{ $cartProduct->name }} from cart?')">
                                                     <i class="fal fa-times"></i>
                                                 </a>
                                             </td>
                                             <td class="product-thumbnail">
-                                                <a href="{{route('details.product', $cartProduct->id)}}">
-                                                    <img src="{{asset($cartProduct->options->image)}}" alt="Product Image">
+                                                <a href="{{ route('details.product', $cartProduct->id) }}">
+                                                    <img src="{{ asset($cartProduct->options->image) }}"
+                                                        alt="Product Image">
                                                 </a>
                                             </td>
                                             <td class="product-title">
-                                                <a href="{{route('details.product', $cartProduct->id)}}">{{$cartProduct->name}}</a>
+                                                <a
+                                                    href="{{ route('details.product', $cartProduct->id) }}">{{ $cartProduct->name }}</a>
                                             </td>
                                             <td class="product-title">
-                                                <a href="single-product.html">{{$cartProduct->options->category}}</a>
+                                                <a href="single-product.html">{{ $cartProduct->options->category }}</a>
                                             </td>
                                             <td class="product-title">
-                                                <a href="single-product.html">{{$cartProduct->options->brand}}</a>
+                                                <a href="single-product.html">{{ $cartProduct->options->brand }}</a>
                                             </td>
                                             <td class="product-price" data-title="Price">
-                                                <span class="currency-symbol">&#2547;</span>{{$cartProduct->price}}
+                                                <span class="currency-symbol">&#2547;</span>{{ $cartProduct->price }}
                                             </td>
                                             <td class="product-quantity" data-title="Qty">
-                                                <form action="{{route('cart.update', $cartProduct->rowId)}}" method="POST">
+                                                <form action="{{ route('cart.update', $cartProduct->rowId) }}"
+                                                    method="POST">
                                                     @csrf
                                                     <div class="pro-qty">
-                                                        <input type="number" name="qty" min="1" class="quantity-input" value="{{$cartProduct->qty}}">
+                                                        <input type="number" name="qty" min="1"
+                                                            class="quantity-input" value="{{ $cartProduct->qty }}">
                                                     </div>
+                                                    <input type="hidden" name="id" value="{{ $cartProduct->id }}">
                                                     <button type="submit" class="btn btn-lg btn-success">Update</button>
                                                 </form>
                                             </td>
                                             <td class="product-subtotal" data-title="Subtotal">
-                                                <span class="currency-symbol">&#2547;</span>{{$cartProduct->price * $cartProduct->qty}}
+                                                <span
+                                                    class="currency-symbol">&#2547;</span>{{ $cartProduct->price * $cartProduct->qty }}
                                             </td>
                                         </tr>
-                                    @php($sum = $sum + ($cartProduct->price * $cartProduct->qty))
+                                        @php($sum = $sum + $cartProduct->price * $cartProduct->qty)
                                     @endforeach
                                 </tbody>
                             </table>
@@ -96,7 +111,7 @@
                                             <tbody>
                                                 <tr class="order-subtotal">
                                                     <td>Subtotal</td>
-                                                    <td>&#2547; {{number_format($sum)}}</td>
+                                                    <td>&#2547; {{ number_format($sum) }}</td>
                                                 </tr>
                                                 <tr class="order-shipping">
                                                     <td>Shipping</td>
@@ -106,25 +121,28 @@
                                                             <label for="radio1">Free Shippping</label>
                                                         </div>
                                                         <div class="input-group">
-                                                            <input type="radio" id="radio2" name="shipping" checked >
-                                                            <label for="radio2">Local: &#2547;{{$shipping = 120}}</label>
+                                                            <input type="radio" id="radio2" name="shipping" checked>
+                                                            <label for="radio2">Local:
+                                                                &#2547;{{ $shipping = 120 }}</label>
                                                         </div>
                                                     </td>
                                                 </tr>
                                                 <tr class="order-tax">
                                                     @php($tax = $sum * 0.07)
                                                     <td>Tax 7%</td>
-                                                    <td>&#2547; {{$tax}}</td>
+                                                    <td>&#2547; {{ $tax }}</td>
                                                 </tr>
                                                 <tr class="order-total">
                                                     @php($total = $sum + $shipping + $tax)
                                                     <td>Total</td>
-                                                    <td class="order-total-amount"> &#2547; {{number_format(round($total))}}</td>
+                                                    <td class="order-total-amount"> &#2547;
+                                                        {{ number_format(round($total)) }}</td>
                                                 </tr>
                                             </tbody>
                                         </table>
                                     </div>
-                                    <a href="{{route('checkout')}}" class="axil-btn btn-bg-primary checkout-btn">Process to Checkout</a>
+                                    <a href="{{ route('checkout') }}"
+                                        class="axil-btn btn-bg-primary checkout-btn">Process to Checkout</a>
                                 </div>
                             </div>
                         </div>

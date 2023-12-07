@@ -12,25 +12,35 @@
                 <div class="single-product-thumb mb--40">
                     <div class="container">
                         <div class="row">
+                            @if (session('message'))
+                                <div class="col-md-8 mx-auto text-center">
+                                    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                                        <strong>{{ session('message') }}</strong>
+                                        <button type="button" class="btn-close" data-bs-dismiss="alert"
+                                            aria-label="Close"></button>
+                                    </div>
+                                </div>
+                            @endif
                             <div class="col-lg-7 mb--40">
                                 <div class="row">
                                     <div class="col-lg-10 order-lg-2">
                                         <div class="single-product-thumbnail-wrap zoom-gallery">
                                             <div class="single-product-thumbnail product-large-thumbnail-3 axil-product">
                                                 @foreach ($othersImage as $others_Image)
-                                                   <div class="thumbnail">
-                                                        <a href="{{asset($others_Image->image)}}" class="popup-zoom">
-                                                            <img src="{{asset($others_Image->image)}}" alt="Product Images">
+                                                    <div class="thumbnail">
+                                                        <a href="{{ asset($others_Image->image) }}" class="popup-zoom">
+                                                            <img src="{{ asset($others_Image->image) }}"
+                                                                alt="Product Images">
                                                         </a>
-                                                    </div> 
+                                                    </div>
                                                 @endforeach
-                                                
+
                                             </div>
                                             <div class="label-block">
                                                 <div class="product-badget">20% OFF</div>
                                             </div>
                                             <div class="product-quick-view position-view">
-                                                <a href="{{asset($product->image)}}" class="popup-zoom">
+                                                <a href="{{ asset($product->image) }}" class="popup-zoom">
                                                     <i class="far fa-search-plus"></i>
                                                 </a>
                                             </div>
@@ -40,10 +50,10 @@
                                         <div class="product-small-thumb-3 small-thumb-wrapper">
                                             @foreach ($othersImage as $othersImage)
                                                 <div class="small-thumb-img">
-                                                    <img src="{{asset($othersImage->image)}}" alt="thumb image">
+                                                    <img src="{{ asset($othersImage->image) }}" alt="thumb image">
                                                 </div>
                                             @endforeach
-                                            
+
                                         </div>
                                     </div>
                                 </div>
@@ -51,8 +61,9 @@
                             <div class="col-lg-5 mb--40">
                                 <div class="single-product-content">
                                     <div class="inner">
-                                        <h2 class="product-title">{{$product->name}}</h2>
-                                        <span class="price-amount">{{$product->regular_price}}&#2547; - {{$product->selling_price}}&#2547;</span>
+                                        <h2 class="product-title">{{ $product->name }}</h2>
+                                        <span class="price-amount">{{ $product->regular_price }}&#2547; -
+                                            {{ $product->selling_price }}&#2547;</span>
                                         <div class="product-rating">
                                             <div class="star-rating">
                                                 <i class="fas fa-star"></i>
@@ -70,7 +81,7 @@
                                             <li><i class="fal fa-check"></i>Free delivery available</li>
                                             <li><i class="fal fa-check"></i>Sales 30% Off Use Code: MOTIVE30</li>
                                         </ul>
-                                        <p class="description">{{$product->short_description}}</p>
+                                        <p class="description">{{ $product->short_description }}</p>
 
                                         <div class="product-variations-wrapper">
 
@@ -107,28 +118,31 @@
                                         </div>
 
                                         {{-- for add to cart --}}
-                                        <form action="{{route('cart.add', $product->id)}}" method="POST">
+                                        <form action="{{ route('cart.add', $product->id) }}" method="POST">
                                             @csrf
                                             <!-- Start Product Action Wrapper  -->
                                             <div class="product-action-wrapper d-flex-center">
                                                 <!-- Start Quentity Action  -->
-                                                <div class="pro-qty"><input type="text" name="qty" value="1"></div>
+                                                <div class="pro-qty"><input type="text" name="qty" value="1">
+                                                </div>
                                                 <!-- End Quentity Action  -->
 
                                                 <!-- Start Product Action  -->
                                                 <ul class="product-action d-flex-center mb--0">
                                                     <li class="add-to-cart">
-                                                        <button type="submit" class="axil-btn btn-bg-primary">Add to Cart</button>
+                                                        <button type="submit" class="axil-btn btn-bg-primary">Add to
+                                                            Cart</button>
                                                     </li>
                                                     <li class="wishlist">
-                                                        <a href="wishlist.html" class="axil-btn wishlist-btn"><i class="far fa-heart"></i></a>
-                                                        </li>
+                                                        <a href="wishlist.html" class="axil-btn wishlist-btn"><i
+                                                                class="far fa-heart"></i></a>
+                                                    </li>
                                                 </ul>
                                                 <!-- End Product Action  -->
                                             </div>
                                             <!-- End Product Action Wrapper  -->
                                         </form>
-                                        
+
                                     </div>
                                 </div>
                             </div>
@@ -171,21 +185,21 @@
                                             <ul class="pro-des-features">
                                                 <li class="single-features">
                                                     <div class="icon">
-                                                        <img src="{{asset('/')}}frontend/assets/images/product/product-thumb/icon-3.png"
+                                                        <img src="{{ asset('/') }}frontend/assets/images/product/product-thumb/icon-3.png"
                                                             alt="icon">
                                                     </div>
                                                     Easy Returns
                                                 </li>
                                                 <li class="single-features">
                                                     <div class="icon">
-                                                        <img src="{{asset('/')}}frontend/assets/images/product/product-thumb/icon-2.png"
+                                                        <img src="{{ asset('/') }}frontend/assets/images/product/product-thumb/icon-2.png"
                                                             alt="icon">
                                                     </div>
                                                     Quality Service
                                                 </li>
                                                 <li class="single-features">
                                                     <div class="icon">
-                                                        <img src="{{asset('/')}}frontend/assets/images/product/product-thumb/icon-1.png"
+                                                        <img src="{{ asset('/') }}frontend/assets/images/product/product-thumb/icon-1.png"
                                                             alt="icon">
                                                     </div>
                                                     Original Product
@@ -265,7 +279,7 @@
                                                         <div class="comment-body">
                                                             <div class="single-comment">
                                                                 <div class="comment-img">
-                                                                    <img src="{{asset('/')}}frontend/assets/images/blog/author-image-4.png"
+                                                                    <img src="{{ asset('/') }}frontend/assets/images/blog/author-image-4.png"
                                                                         alt="Author Images">
                                                                 </div>
                                                                 <div class="comment-inner">
@@ -307,7 +321,7 @@
                                                         <div class="comment-body">
                                                             <div class="single-comment">
                                                                 <div class="comment-img">
-                                                                    <img src="{{asset('/')}}frontend/assets/images/blog/author-image-4.png"
+                                                                    <img src="{{ asset('/') }}frontend/assets/images/blog/author-image-4.png"
                                                                         alt="Author Images">
                                                                 </div>
                                                                 <div class="comment-inner">
@@ -348,7 +362,7 @@
                                                         <div class="comment-body">
                                                             <div class="single-comment">
                                                                 <div class="comment-img">
-                                                                    <img src="{{asset('/')}}frontend/assets/images/blog/author-image-5.png"
+                                                                    <img src="{{ asset('/') }}frontend/assets/images/blog/author-image-5.png"
                                                                         alt="Author Images">
                                                                 </div>
                                                                 <div class="comment-inner">
@@ -462,7 +476,8 @@
                             <div class="axil-product">
                                 <div class="thumbnail">
                                     <a href="single-product.html">
-                                        <img src="{{asset('/')}}frontend/assets/images/product/electric/product-01.png" alt="Product Images">
+                                        <img src="{{ asset('/') }}frontend/assets/images/product/electric/product-01.png"
+                                            alt="Product Images">
                                     </a>
                                     <div class="label-block label-right">
                                         <div class="product-badget">20% OFF</div>
@@ -471,7 +486,7 @@
                                         <ul class="cart-action">
                                             <li class="wishlist"><a href="wishlist.html"><i class="far fa-heart"></i></a>
                                             </li>
-                                            <li class="select-option"><a href="{{route('cart')}}">Add to Cart</a></li>
+                                            <li class="select-option"><a href="{{ route('cart') }}">Add to Cart</a></li>
                                             <li class="quickview"><a href="#" data-bs-toggle="modal"
                                                     data-bs-target="#quick-view-modal"><i class="far fa-eye"></i></a></li>
                                         </ul>
@@ -504,7 +519,8 @@
                             <div class="axil-product">
                                 <div class="thumbnail">
                                     <a href="single-product.html">
-                                        <img src="{{asset('/')}}frontend/assets/images/product/electric/product-02.png" alt="Product Images">
+                                        <img src="{{ asset('/') }}frontend/assets/images/product/electric/product-02.png"
+                                            alt="Product Images">
                                     </a>
                                     <div class="label-block label-right">
                                         <div class="product-badget">40% OFF</div>
@@ -513,7 +529,7 @@
                                         <ul class="cart-action">
                                             <li class="wishlist"><a href="wishlist.html"><i class="far fa-heart"></i></a>
                                             </li>
-                                            <li class="select-option"><a href="{{route('cart')}}">Add to Cart</a></li>
+                                            <li class="select-option"><a href="{{ route('cart') }}">Add to Cart</a></li>
                                             <li class="quickview"><a href="#" data-bs-toggle="modal"
                                                     data-bs-target="#quick-view-modal"><i class="far fa-eye"></i></a></li>
                                         </ul>
@@ -546,7 +562,8 @@
                             <div class="axil-product">
                                 <div class="thumbnail">
                                     <a href="single-product.html">
-                                        <img src="{{asset('/')}}frontend/assets/images/product/electric/product-03.png" alt="Product Images">
+                                        <img src="{{ asset('/') }}frontend/assets/images/product/electric/product-03.png"
+                                            alt="Product Images">
                                     </a>
                                     <div class="label-block label-right">
                                         <div class="product-badget">30% OFF</div>
@@ -555,7 +572,7 @@
                                         <ul class="cart-action">
                                             <li class="wishlist"><a href="wishlist.html"><i class="far fa-heart"></i></a>
                                             </li>
-                                            <li class="select-option"><a href="{{route('cart')}}">Add to Cart</a></li>
+                                            <li class="select-option"><a href="{{ route('cart') }}">Add to Cart</a></li>
                                             <li class="quickview"><a href="#" data-bs-toggle="modal"
                                                     data-bs-target="#quick-view-modal"><i class="far fa-eye"></i></a></li>
                                         </ul>
@@ -588,7 +605,8 @@
                             <div class="axil-product">
                                 <div class="thumbnail">
                                     <a href="single-product.html">
-                                        <img src="{{asset('/')}}frontend/assets/images/product/electric/product-04.png" alt="Product Images">
+                                        <img src="{{ asset('/') }}frontend/assets/images/product/electric/product-04.png"
+                                            alt="Product Images">
                                     </a>
                                     <div class="label-block label-right">
                                         <div class="product-badget">50% OFF</div>
@@ -597,7 +615,7 @@
                                         <ul class="cart-action">
                                             <li class="wishlist"><a href="wishlist.html"><i class="far fa-heart"></i></a>
                                             </li>
-                                            <li class="select-option"><a href="{{route('cart')}}">Add to Cart</a></li>
+                                            <li class="select-option"><a href="{{ route('cart') }}">Add to Cart</a></li>
                                             <li class="quickview"><a href="#" data-bs-toggle="modal"
                                                     data-bs-target="#quick-view-modal"><i class="far fa-eye"></i></a></li>
                                         </ul>
@@ -630,7 +648,8 @@
                             <div class="axil-product">
                                 <div class="thumbnail">
                                     <a href="single-product.html">
-                                        <img src="{{asset('/')}}frontend/assets/images/product/electric/product-05.png" alt="Product Images">
+                                        <img src="{{ asset('/') }}frontend/assets/images/product/electric/product-05.png"
+                                            alt="Product Images">
                                     </a>
                                     <div class="label-block label-right">
                                         <div class="product-badget">25% OFF</div>
@@ -639,7 +658,7 @@
                                         <ul class="cart-action">
                                             <li class="wishlist"><a href="wishlist.html"><i class="far fa-heart"></i></a>
                                             </li>
-                                            <li class="select-option"><a href="{{route('cart')}}">Add to Cart</a></li>
+                                            <li class="select-option"><a href="{{ route('cart') }}">Add to Cart</a></li>
                                             <li class="quickview"><a href="#" data-bs-toggle="modal"
                                                     data-bs-target="#quick-view-modal"><i class="far fa-eye"></i></a></li>
                                         </ul>
@@ -673,7 +692,8 @@
                             <div class="axil-product">
                                 <div class="thumbnail">
                                     <a href="single-product.html">
-                                        <img src="{{asset('/')}}frontend/assets/images/product/electric/product-03.png" alt="Product Images">
+                                        <img src="{{ asset('/') }}frontend/assets/images/product/electric/product-03.png"
+                                            alt="Product Images">
                                     </a>
                                     <div class="label-block label-right">
                                         <div class="product-badget">30% OFF</div>
@@ -682,7 +702,7 @@
                                         <ul class="cart-action">
                                             <li class="wishlist"><a href="wishlist.html"><i class="far fa-heart"></i></a>
                                             </li>
-                                            <li class="select-option"><a href="{{route('cart')}}">Add to Cart</a></li>
+                                            <li class="select-option"><a href="{{ route('cart') }}">Add to Cart</a></li>
                                             <li class="quickview"><a href="#" data-bs-toggle="modal"
                                                     data-bs-target="#quick-view-modal"><i class="far fa-eye"></i></a></li>
                                         </ul>
@@ -715,7 +735,8 @@
                             <div class="axil-product">
                                 <div class="thumbnail">
                                     <a href="single-product.html">
-                                        <img src="{{asset('/')}}frontend/assets/images/product/electric/product-04.png" alt="Product Images">
+                                        <img src="{{ asset('/') }}frontend/assets/images/product/electric/product-04.png"
+                                            alt="Product Images">
                                     </a>
                                     <div class="label-block label-right">
                                         <div class="product-badget">50% OFF</div>
@@ -724,7 +745,7 @@
                                         <ul class="cart-action">
                                             <li class="wishlist"><a href="wishlist.html"><i class="far fa-heart"></i></a>
                                             </li>
-                                            <li class="select-option"><a href="{{route('cart')}}">Add to Cart</a></li>
+                                            <li class="select-option"><a href="{{ route('cart') }}">Add to Cart</a></li>
                                             <li class="quickview"><a href="#" data-bs-toggle="modal"
                                                     data-bs-target="#quick-view-modal"><i class="far fa-eye"></i></a></li>
                                         </ul>
@@ -757,7 +778,8 @@
                             <div class="axil-product">
                                 <div class="thumbnail">
                                     <a href="single-product.html">
-                                        <img src="{{asset('/')}}frontend/assets/images/product/electric/product-05.png" alt="Product Images">
+                                        <img src="{{ asset('/') }}frontend/assets/images/product/electric/product-05.png"
+                                            alt="Product Images">
                                     </a>
                                     <div class="label-block label-right">
                                         <div class="product-badget">25% OFF</div>
@@ -766,7 +788,7 @@
                                         <ul class="cart-action">
                                             <li class="wishlist"><a href="wishlist.html"><i class="far fa-heart"></i></a>
                                             </li>
-                                            <li class="select-option"><a href="{{route('cart')}}">Add to Cart</a></li>
+                                            <li class="select-option"><a href="{{ route('cart') }}">Add to Cart</a></li>
                                             <li class="quickview"><a href="#" data-bs-toggle="modal"
                                                     data-bs-target="#quick-view-modal"><i class="far fa-eye"></i></a></li>
                                         </ul>
