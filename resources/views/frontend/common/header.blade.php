@@ -193,9 +193,11 @@
                                 <i class="flaticon-heart"></i>
                             </a>
                         </li>
+                        {{-- for counting how much product is in cart --}}
+                        @php($cartProductCount = count(Cart::content()))    
                         <li class="shopping-cart">
                             <a href="#" class="cart-dropdown-btn">
-                                <span class="cart-count">3</span>
+                                <span class="cart-count">{{$cartProductCount}}</span>
                                 <i class="flaticon-shopping-cart"></i>
                             </a>
                         </li>
