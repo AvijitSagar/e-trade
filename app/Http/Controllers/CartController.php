@@ -8,11 +8,21 @@ use Illuminate\Http\Request;
 
 class CartController extends Controller
 {
-    private $product;
+    private $product, $totalCartItem;
     public function index(Request $request, $id){
         $this->product = Product::find($id);
+
         if($this->product->stock_amount < $request->qty){
             return back()->with('message', 'Sorry... You can purchase maximum ' . $this->product->stock_amount . ' of this product');
+        }
+
+        foreach(Cart::content() as $item){
+            if($item->id == $this->product->id){
+                $this->totalCartItem = $item->qty + $request->qty;
+                if($this->product->stock_amount < $this->totalCartItem){
+                    return back()->with('message', 'Sorry... You can purchase maximum ' . $this->product->stock_amount . ' of this product');
+                }
+            }
         }
 
         Cart::add([

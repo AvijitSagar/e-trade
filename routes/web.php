@@ -41,6 +41,9 @@ Route::get('/cart', [CartController::class, 'cart'])->name('cart');
 
 
 Route::get('/check-out', [CheckoutController::class, 'index'])->name('checkout');
+Route::post('/new-order', [CheckoutController::class, 'newOrder'])->name('order.new');
+Route::get('/complete-order', [CheckoutController::class, 'completeOrder'])->name('order.complete');
+
 Route::get('/user/login', [HomeController::class, 'userLogin'])->name('login.user');
 Route::get('/user/register', [HomeController::class, 'userRegister'])->name('register.user');
 Route::get('/user/password/recovery', [HomeController::class, 'userFrogotPassword'])->name('recover.password.user');
