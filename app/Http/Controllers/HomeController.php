@@ -2,11 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Category;
 use App\Models\OthersImage;
 use App\Models\Product;
 use App\Models\SubCategory;
-use Illuminate\Http\Request;
 
 class HomeController extends Controller
 {
@@ -34,16 +32,6 @@ class HomeController extends Controller
         ]);
     }
     
-    public function userLogin(){
-        return view('frontend.user.user-login');
-    }
-    public function userRegister(){
-        return view('frontend.user.user-register');
-    }
-    public function userFrogotPassword(){
-        return view('frontend.user.user-forgot-password');
-    }
-    public function userAccount(){
-        return view('frontend.user.user-account');
-    }
+    
+    
 }

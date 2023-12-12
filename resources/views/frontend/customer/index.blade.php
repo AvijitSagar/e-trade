@@ -1,7 +1,7 @@
 @extends('frontend.master')
 
 @section('title')
-    User account
+    Customer account
 @endsection
 
 @section('content')
@@ -14,7 +14,7 @@
                         <div class="col-lg-6 col-md-8">
                             <div class="inner">
                                 <ul class="axil-breadcrumb">
-                                    <li class="axil-breadcrumb-item"><a href="index.html">Home</a></li>
+                                    <li class="axil-breadcrumb-item"><a href="{{route('home')}}">Home</a></li>
                                     <li class="separator"></li>
                                     <li class="axil-breadcrumb-item active" aria-current="page">My Account</li>
                                 </ul>
@@ -43,7 +43,7 @@
                                     <img src="{{asset('/')}}frontend/assets/images/product/author1.png" alt="Hello Annie">
                                 </div>
                                 <div class="media-body">
-                                    <h5 class="title mb-0">Hello Annie</h5>
+                                    <h5 class="title mb-0">Hello {{Session::get('customer_name')}}</h5>
                                     <span class="joining-date">eTrade Member Since Sep 2020</span>
                                 </div>
                             </div>
@@ -68,7 +68,7 @@
                                             <a class="nav-item nav-link" data-bs-toggle="tab" href="#nav-account"
                                                 role="tab" aria-selected="false"><i class="fas fa-user"></i>Account
                                                 Details</a>
-                                            <a class="nav-item nav-link" href="sign-in.html"><i
+                                            <a class="nav-item nav-link" href="{{route('logout.customer')}}"><i
                                                     class="fal fa-sign-out"></i>Logout</a>
                                         </div>
                                     </nav>
@@ -78,8 +78,8 @@
                                 <div class="tab-content">
                                     <div class="tab-pane fade show active" id="nav-dashboard" role="tabpanel">
                                         <div class="axil-dashboard-overview">
-                                            <div class="welcome-text">Hello Annie (not <span>Annie?</span> <a
-                                                    href="sign-in.html">Log Out</a>)</div>
+                                            <div class="welcome-text">Hello {{Session::get('customer_name')}} (not <span>{{Session::get('customer_name')}}</span> <a
+                                                    href="{{route('logout.customer')}}">Log Out</a>)</div>
                                             <p>From your account dashboard you can view your recent orders, manage your
                                                 shipping and billing addresses, and edit your password and account details.
                                             </p>
@@ -91,49 +91,29 @@
                                                 <table class="table">
                                                     <thead>
                                                         <tr>
-                                                            <th scope="col">Order</th>
-                                                            <th scope="col">Date</th>
-                                                            <th scope="col">Status</th>
-                                                            <th scope="col">Total</th>
-                                                            <th scope="col">Actions</th>
+                                                            <td scope="col"><b>Sl No</b></td>
+                                                            <td scope="col"><b>Order Id</b></td>
+                                                            <td scope="col"><b>Total Amount</b></td>
+                                                            <td scope="col"><b>Order Date</b></td>
+                                                            <td scope="col"><b>Order Status</b></td>
+                                                            <td scope="col"><b>Payment Status</b></td>
+                                                            <td scope="col"><b>Actions</b></td>
                                                         </tr>
                                                     </thead>
                                                     <tbody>
-                                                        <tr>
-                                                            <th scope="row">#6523</th>
-                                                            <td>September 10, 2020</td>
-                                                            <td>Processing</td>
-                                                            <td>$326.63 for 3 items</td>
-                                                            <td><a href="#" class="axil-btn view-btn">View</a></td>
-                                                        </tr>
-                                                        <tr>
-                                                            <th scope="row">#6523</th>
-                                                            <td>September 10, 2020</td>
-                                                            <td>On Hold</td>
-                                                            <td>$326.63 for 3 items</td>
-                                                            <td><a href="#" class="axil-btn view-btn">View</a></td>
-                                                        </tr>
-                                                        <tr>
-                                                            <th scope="row">#6523</th>
-                                                            <td>September 10, 2020</td>
-                                                            <td>Processing</td>
-                                                            <td>$326.63 for 3 items</td>
-                                                            <td><a href="#" class="axil-btn view-btn">View</a></td>
-                                                        </tr>
-                                                        <tr>
-                                                            <th scope="row">#6523</th>
-                                                            <td>September 10, 2020</td>
-                                                            <td>Processing</td>
-                                                            <td>$326.63 for 3 items</td>
-                                                            <td><a href="#" class="axil-btn view-btn">View</a></td>
-                                                        </tr>
-                                                        <tr>
-                                                            <th scope="row">#6523</th>
-                                                            <td>September 10, 2020</td>
-                                                            <td>Processing</td>
-                                                            <td>$326.63 for 3 items</td>
-                                                            <td><a href="#" class="axil-btn view-btn">View</a></td>
-                                                        </tr>
+
+                                                        @foreach ($orders as $order)
+                                                            <tr>
+                                                                <th scope="row">{{$loop->iteration}}</th>
+                                                                <td>{{$order->id}}</td>
+                                                                <td>{{$order->order_total}} &#2547;</td>
+                                                                <td>{{$order->order_date}}</td>
+                                                                <td>{{$order->order_status == 0 ? 'pending' : 'Success'}}</td>
+                                                                <td>{{$order->payment_status == 0 ? 'pending' : 'Paid'}}</td>
+                                                                <td><a href="#" class="axil-btn view-btn">View</a></td>
+                                                            </tr>
+                                                        @endforeach
+                                                        
                                                     </tbody>
                                                 </table>
                                             </div>
@@ -251,27 +231,6 @@
                 </div>
             </div>
             <!-- End My Account Area  -->
-
-            <!-- Start Axil Newsletter Area  -->
-            <div class="axil-newsletter-area axil-section-gap pt--0">
-                <div class="container">
-                    <div class="etrade-newsletter-wrapper bg_image bg_image--5">
-                        <div class="newsletter-content">
-                            <span class="title-highlighter highlighter-primary2"><i
-                                    class="fas fa-envelope-open"></i>Newsletter</span>
-                            <h2 class="title mb--40 mb_sm--30">Get weekly update</h2>
-                            <div class="input-group newsletter-form">
-                                <div class="position-relative newsletter-inner mb--15">
-                                    <input placeholder="example@gmail.com" type="text">
-                                </div>
-                                <button type="submit" class="axil-btn mb--15">Subscribe</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <!-- End .container -->
-            </div>
-            <!-- End Axil Newsletter Area  -->
         </main>
     </section>
 @endsection

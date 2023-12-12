@@ -152,9 +152,9 @@
                                     <li><a href="wishlist.html">Wishlist</a></li>
                                     <li><a href="{{ route('cart') }}">Cart</a></li>
                                     <li><a href="checkout.html">Checkout</a></li>
-                                    <li><a href="{{ route('account.user') }}">Account</a></li>
-                                    <li><a href="{{ route('register.user') }}">Sign Up</a></li>
-                                    <li><a href="{{ route('login.user') }}">Sign In</a></li>
+                                    <li><a href="{{ route('dashboard.customer') }}">Account</a></li>
+                                    <li><a href="{{ route('register.customer') }}">Sign Up</a></li>
+                                    <li><a href="{{ route('login.customer') }}">Sign In</a></li>
                                     <li><a href="forgot-password.html">Forgot Password</a></li>
                                     <li><a href="reset-password.html">Reset Password</a></li>
                                     <li><a href="privacy-policy.html">Privacy Policy</a></li>
@@ -206,26 +206,23 @@
                                 <i class="flaticon-person"></i>
                             </a>
                             <div class="my-account-dropdown">
-                                <span class="title">QUICKLINKS</span>
-                                <ul>
-                                    <li>
-                                        <a href="{{ route('account.user') }}">My Account</a>
-                                    </li>
-                                    <li>
-                                        <a href="#">Initiate return</a>
-                                    </li>
-                                    <li>
-                                        <a href="#">Support</a>
-                                    </li>
-                                    <li>
-                                        <a href="#">Language</a>
-                                    </li>
-                                </ul>
-                                <div class="login-btn">
-                                    <a href="{{ route('login.user') }}" class="axil-btn btn-bg-primary">Login</a>
-                                </div>
-                                <div class="reg-footer text-center">No account yet? <a
-                                        href="{{ route('register.user') }}" class="btn-link">REGISTER HERE.</a></div>
+
+                                @if (Session::get('customer_id'))
+                                    <ul>
+                                        <li>
+                                            <h6 class="m-0">{{Session::get('customer_name')}}</h6>
+                                        </li>
+                                        <li>
+                                            <a href="{{ route('dashboard.customer') }}">My Account</a>
+                                        </li>
+                                    </ul>
+                                @else
+                                    <div class="login-btn">
+                                        <a href="{{ route('login.customer') }}" class="axil-btn btn-bg-primary">Login</a>
+                                    </div>
+                                    <div class="reg-footer text-center">No account yet? <a href="{{ route('register.customer') }}" class="btn-link">REGISTER HERE.</a></div>
+                                @endif
+                                
                             </div>
                         </li>
                         <li class="axil-mobile-toggle">

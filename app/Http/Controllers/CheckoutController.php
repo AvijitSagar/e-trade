@@ -5,13 +5,14 @@ namespace App\Http\Controllers;
 use App\Models\Customer;
 use App\Models\Order;
 use App\Models\OrderDetail;
+use App\Models\Product;
 use Gloudemans\Shoppingcart\Facades\Cart;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
 
 class CheckoutController extends Controller
 {
-    private $order, $orderDetail, $customer;
+    private $order, $orderDetail, $customer, $product;
 
     public function index(){
         return view('frontend.checkout.index', [
@@ -44,6 +45,10 @@ class CheckoutController extends Controller
         $this->customer->password   = bcrypt($request->mobile);
         $this->customer->save();
 
+        // saving customer id and name in the session to show them on customer dashboard page 
+        Session::put('customer_id', $this->customer->id);
+        Session::put('customer_name', $this->customer->name);
+
         $this->order = new Order();
         $this->order->customer_id       = $this->customer->id;
         $this->order->order_total       = Session::get('order_total');
@@ -64,6 +69,14 @@ class CheckoutController extends Controller
             $this->orderDetail->product_price       = $item->price;
             $this->orderDetail->product_quantity    = $item->qty;
             $this->orderDetail->save();
+
+            // product quantity will decrease when a order is placed
+            $this->product = Product::find($item->id);
+            $this->product->stock_amount = $this->product->stock_amount - $item->qty;
+            $this->product->save();
+
+            // remove the cart item when order is placed
+            Cart::remove($item->rowId);
         }
 
         return redirect(route('order.complete'))->with('message', 'Your order saved successfully. Please wait we will contact with you soon..!');
