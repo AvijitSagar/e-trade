@@ -46,7 +46,9 @@ Route::post('/new-order', [CheckoutController::class, 'newOrder'])->name('order.
 Route::get('/complete-order', [CheckoutController::class, 'completeOrder'])->name('order.complete');
 
 Route::get('/customer/login', [CustomerAuthController::class, 'login'])->name('login.customer');
+Route::post('/customer/login', [CustomerAuthController::class, 'loginCheck'])->name('login.customer');
 Route::get('/customer/register', [CustomerAuthController::class, 'registration'])->name('register.customer');
+Route::post('/customer/register', [CustomerAuthController::class, 'newRegistration'])->name('register.customer');
 Route::get('/customer/logout', [CustomerAuthController::class, 'logout'])->name('logout.customer');
 Route::get('/customer/password/recovery', [CustomerAuthController::class, 'recoverPassword'])->name('recover.password.customer');
 

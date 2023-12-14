@@ -32,19 +32,40 @@
                                             <div class="tab-pane fade show active" id="cash-on-delivery-tab-pane" role="tabpanel" aria-labelledby="cash-on-delivery-tab" tabindex="0">
                                                 <form action="{{route('order.new')}}" method="POST">
                                                     @csrf
+
                                                     <div class="form-group">
                                                         <label>Full Name <span class="danger">*</span></label>
-                                                        <input type="text" id="name" name="name" placeholder="Full name">
+
+                                                        @if (isset($customer->name))
+                                                            <input type="text" value="{{$customer->name}}" readonly id="name" name="name" placeholder="Full name">
+                                                        @else
+                                                            <input type="text" value="{{$customer->name}}" id="name" name="name" placeholder="Full name">
+                                                        @endif
+                                                        
                                                         <p class="text-danger pt-2">{{$errors->has('name') ? $errors->first('name') : ''}}</p>
                                                     </div>
+
                                                     <div class="form-group">
                                                         <label>Email</label>
-                                                        <input type="email" id="email" name="email" placeholder="Email">
+
+                                                        @if (isset($customer->email))
+                                                            <input type="email" value="{{$customer->email}}" readonly id="email" name="email" placeholder="Email">
+                                                        @else
+                                                            <input type="email" value="{{$customer->email}}" id="email" name="email" placeholder="Email">
+                                                        @endif
+                                                        
                                                         <p class="text-danger pt-2">{{$errors->has('email') ? $errors->first('email') : ''}}</p>
                                                     </div>
+
                                                     <div class="form-group">
                                                         <label>Mobile <span class="danger">*</span></label>
-                                                        <input type="number" id="mobile" name="mobile" placeholder="Mobile number">
+
+                                                        @if (isset($customer->mobile))
+                                                            <input type="number" value="{{$customer->mobile}}" readonly id="mobile" name="mobile" placeholder="Mobile number">
+                                                        @else
+                                                            <input type="number" value="{{$customer->mobile}}" id="mobile" name="mobile" placeholder="Mobile number">
+                                                        @endif
+                                                        
                                                         <p class="text-danger pt-2">{{$errors->has('mobile') ? $errors->first('mobile') : ''}}</p>
                                                     </div>
                                                     <div class="form-group">

@@ -35,21 +35,27 @@
                     <div class="axil-signin-form-wrap">
                         <div class="axil-signin-form">
                             <h3 class="title">Sign in to eTrade.</h3>
-                            <p class="b2 mb--55">Enter your detail below</p>
-                            <form class="singin-form">
+                            <p class="b2 mb--55 {{Session('message') == '' ? '' : 'text-danger'}}">{{Session('message') == '' ? 'Enter your detail below' : Session('message')}}</p>
+                            {{-- <p class="b2 mb--10 text-danger">{{Session('message')}}</p> --}}
+
+                            <form class="singin-form" action="{{route('login.customer')}}" method="POST">
+                                @csrf
                                 <div class="form-group">
-                                    <label>Email</label>
-                                    <input type="email" class="form-control" name="email" value="annie@example.com">
+                                    <label>Email or Mobile</label>
+                                    <input type="text" class="form-control" name="user_id">
+                                    <p class="text-danger">{{$errors->has('user_id') ? $errors->first('user_id') : ''}}</p>
                                 </div>
                                 <div class="form-group">
                                     <label>Password</label>
-                                    <input type="password" class="form-control" name="password" value="123456789">
+                                    <input type="password" class="form-control" name="password">
+                                    <p class="text-danger">{{$errors->has('password') ? $errors->first('password') : ''}}</p>
                                 </div>
                                 <div class="form-group d-flex align-items-center justify-content-between">
                                     <button type="submit" class="axil-btn btn-bg-primary submit-btn">Sign In</button>
                                     <a href="{{route('recover.password.customer')}}" class="forgot-btn">Forget password?</a>
                                 </div>
                             </form>
+
                         </div>
                     </div>
                 </div>
