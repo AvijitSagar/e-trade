@@ -37,9 +37,9 @@
                                                         <label>Full Name <span class="danger">*</span></label>
 
                                                         @if (isset($customer->name))
-                                                            <input type="text" value="{{$customer->name}}" readonly id="name" name="name" placeholder="Full name">
+                                                            <input type="text" value="{{ isset($customer->name) ? $customer->name : '' }}" readonly id="name" name="name" placeholder="Full name">
                                                         @else
-                                                            <input type="text" value="{{$customer->name}}" id="name" name="name" placeholder="Full name">
+                                                            <input type="text" value="{{ isset($customer->name) ? $customer->name : '' }}" id="name" name="name" placeholder="Full name">
                                                         @endif
                                                         
                                                         <p class="text-danger pt-2">{{$errors->has('name') ? $errors->first('name') : ''}}</p>
@@ -49,9 +49,9 @@
                                                         <label>Email</label>
 
                                                         @if (isset($customer->email))
-                                                            <input type="email" value="{{$customer->email}}" readonly id="email" name="email" placeholder="Email">
+                                                            <input type="email" value="{{isset($customer->email) ? $customer->email : ''}}" readonly id="email" name="email" placeholder="Email">
                                                         @else
-                                                            <input type="email" value="{{$customer->email}}" id="email" name="email" placeholder="Email">
+                                                            <input type="email" value="{{isset($customer->email) ? $customer->email : ''}}" id="email" name="email" placeholder="Email">
                                                         @endif
                                                         
                                                         <p class="text-danger pt-2">{{$errors->has('email') ? $errors->first('email') : ''}}</p>
@@ -61,9 +61,9 @@
                                                         <label>Mobile <span class="danger">*</span></label>
 
                                                         @if (isset($customer->mobile))
-                                                            <input type="number" value="{{$customer->mobile}}" readonly id="mobile" name="mobile" placeholder="Mobile number">
+                                                            <input type="number" value="{{isset($customer->mobile) ? $customer->mobile : ''}}" readonly id="mobile" name="mobile" placeholder="Mobile number">
                                                         @else
-                                                            <input type="number" value="{{$customer->mobile}}" id="mobile" name="mobile" placeholder="Mobile number">
+                                                            <input type="number" value="{{isset($customer->mobile) ? $customer->mobile : ''}}" id="mobile" name="mobile" placeholder="Mobile number">
                                                         @endif
                                                         
                                                         <p class="text-danger pt-2">{{$errors->has('mobile') ? $errors->first('mobile') : ''}}</p>

@@ -35,40 +35,53 @@ class CheckoutController extends Controller
         // checking if the customer info is already in the session. if it is in the session then we only need to validate the delivery address coz when customer creates account his delivery address field is not in there. if the session is empty then we need to validate and register them when he is confirming the order 
 
         if(Session::get('customer_id')){
+
             $this->validate($request,[
                 'delivery_address' => 'required'
             ], [
                 'delivery_address.required' => 'Delivery address is required'
             ]);
             $this->customer = Customer::find(Session::get('customer_id'));
+
         }
         else{
 
-            $this->validate($request, [
-                'name'              => 'required',
-                'email'             => 'required|unique:customers,email',
-                'mobile'            => 'required|unique:customers,mobile',
-                'delivery_address'  => 'required'
-            ], [
-                'name.required'             => 'Name is required',
-                'email.required'            => 'Email is required',
-                'email.unique'             => 'This email is already taken please give a unique one',
-                'mobile.required'           => 'Mobile number is required',
-                'mobile.unique'             => 'This mobile is already taken please give a unique one',
-                'delivery_address.required' => 'Delivery address is required'
-            ]);
-    
-    
-            $this->customer = new Customer();
-            $this->customer->name       = $request->name;
-            $this->customer->email      = $request->email;
-            $this->customer->mobile     = $request->mobile;
-            $this->customer->password   = bcrypt($request->mobile);
-            $this->customer->save();
-    
-            // saving customer id and name in the session to show them on customer dashboard page 
-            Session::put('customer_id', $this->customer->id);
-            Session::put('customer_name', $this->customer->name);
+            if($this->customer = Customer::where('email', $request->email)->first()){
+                Session::put('customer_id', $this->customer->id);
+                Session::put('customer_name', $this->customer->name);
+            }
+            elseif($this->customer = Customer::where('mobile', $request->mobile)->first()){
+                Session::put('customer_id', $this->customer->id);
+                Session::put('customer_name', $this->customer->name);
+            }
+            else{
+
+                $this->validate($request, [
+                    'name'              => 'required',
+                    'email'             => 'required|unique:customers,email',
+                    'mobile'            => 'required|unique:customers,mobile',
+                    'delivery_address'  => 'required'
+                ], [
+                    'name.required'             => 'Name is required',
+                    'email.required'            => 'Email is required',
+                    'email.unique'             => 'This email is already taken please give a unique one',
+                    'mobile.required'           => 'Mobile number is required',
+                    'mobile.unique'             => 'This mobile is already taken please give a unique one',
+                    'delivery_address.required' => 'Delivery address is required'
+                ]);
+        
+                $this->customer = new Customer();
+                $this->customer->name       = $request->name;
+                $this->customer->email      = $request->email;
+                $this->customer->mobile     = $request->mobile;
+                $this->customer->password   = bcrypt($request->mobile);
+                $this->customer->save();
+        
+                // saving customer id and name in the session to show them on customer dashboard page 
+                Session::put('customer_id', $this->customer->id);
+                Session::put('customer_name', $this->customer->name);
+            }
+            
         }
         
 
