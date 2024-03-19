@@ -1,0 +1,123 @@
+@extends('backend.master')
+
+@section('title')
+    Manage category
+@endsection
+
+@section('content')
+    <section>
+        <div class="app-content main-content mt-0">
+            <div class="side-app">
+
+                <!-- CONTAINER -->
+                <div class="main-container container-fluid">
+
+
+                    <!-- PAGE-HEADER -->
+                    <div class="page-header">
+                        <div>
+                            <h1 class="page-title">Order Table</h1>
+                        </div>
+                        <div class="ms-auto pageheader-btn">
+                            <ol class="breadcrumb">
+                                <li class="breadcrumb-item"><a href="javascript:void(0);">Order</a></li>
+                                <li class="breadcrumb-item active" aria-current="page">Manage Order</li>
+                            </ol>
+                        </div>
+                    </div>
+                    <!-- PAGE-HEADER END -->
+
+                    <!-- Row -->
+                    <div class="row">
+                        <div class="row row-sm">
+                            <div class="col-lg-12">
+                                <div class="card">
+                                    <div class="card-header border-bottom">
+                                        <h3 class="card-title">Manage Order</h3>
+                                    </div>
+                                    <div>
+                                        <h5 class="mt-3 text-center text-success">{{ Session::get('message') }}</h5>
+                                    </div>
+                                    <div class="card-body">
+                                        <div class="table-responsive">
+                                            <table id="editable-responsive-table"
+                                                class="table editable-table table-nowrap table-bordered table-edit wp-100">
+                                                <thead>
+                                                    <tr>
+                                                        <th>SL</th>
+                                                        <th>Order Id</th>
+                                                        <th>Customer Info</th>
+                                                        <th>Order Date</th>
+                                                        <th>Order Total</th>
+                                                        <th>Order Status</th>
+                                                        <th>Actions</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    @foreach ($orders as $order)
+                                                        <tr data-id="{{ $order->id }}">
+                                                            <td data-field="id">{{ $loop->iteration }}</td>
+                                                            <td data-field="order_id">{{ $order->id }}</td>
+                                                            <td data-field="customer_id">
+                                                                {{ $order->customer->name . '(' . $order->customer->mobile . ')' }}
+                                                            </td>
+                                                            <td data-field="order_date">{{ $order->order_date }}</td>
+                                                            <td data-field="order_total">{{ $order->order_total }} &#2547;
+                                                            </td>
+                                                            <td data-field="order_status">
+                                                                @if ($order->order_status == 0)
+                                                                    Pending
+                                                                @elseif ($order->order_status == 1)
+                                                                    Complete
+                                                                @elseif ($order->order_status == 2)
+                                                                    Processing
+                                                                @elseif ($order->order_status == 3)
+                                                                    Cancel
+                                                                @endif
+                                                            </td>
+                                                            <td>
+                                                                <div class="d-flex">
+                                                                    <a href="{{ route('admin.order-detail', $order->id) }}"
+                                                                        class="btn btn-info text-white"
+                                                                        title="Oredr Detail">
+                                                                        <i class="fe fe-book-open"></i>
+                                                                    </a>
+                                                                    <a href="{{ route('admin.order-edit', $order->id) }}"
+                                                                        class="btn btn-primary ms-1 text-white"
+                                                                        title="Order Edit">
+                                                                        <i class="fe fe-edit"></i>
+                                                                    </a>
+                                                                    <a href="{{ route('admin.order-invoice', $order->id) }}"
+                                                                        class="btn btn-success ms-1 text-white"
+                                                                        title="Order Invoice">
+                                                                        <i class="fe fe-dollar-sign"></i>
+                                                                    </a>
+                                                                    <a href="{{ route('admin.download-invoice', $order->id) }}"
+                                                                        class="btn btn-warning ms-1 text-white"
+                                                                        title="Download Invoice">
+                                                                        <i class="fe fe-download"></i>
+                                                                    </a>
+                                                                    <a href="{{ route('admin.order-delete', $order->id) }}"
+                                                                        class="btn btn-danger ms-1 text-white"
+                                                                        title="Delete Order">
+                                                                        <i class="fe fe-trash"></i>
+                                                                    </a>
+                                                                </div>
+                                                            </td>
+                                                        </tr>
+                                                    @endforeach
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- End Row -->
+
+                </div>
+            </div>
+        </div>
+    </section>
+@endsection
