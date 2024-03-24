@@ -1,7 +1,7 @@
 @extends('backend.master')
 
 @section('title')
-    Manage category
+    Manage order
 @endsection
 
 @section('content')
@@ -77,27 +77,27 @@
                                                             </td>
                                                             <td>
                                                                 <div class="d-flex">
-                                                                    <a href="{{ route('admin.order-detail', $order->id) }}"
+                                                                    <a href="{{ route('admin.order-detail', ['id' => $order->id]) }}"
                                                                         class="btn btn-info text-white"
                                                                         title="Oredr Detail">
                                                                         <i class="fe fe-book-open"></i>
                                                                     </a>
-                                                                    <a href="{{ route('admin.order-edit', $order->id) }}"
+                                                                    <a href="{{ route('admin.order-edit', ['id' => $order->id]) }}"
                                                                         class="btn btn-primary ms-1 text-white"
                                                                         title="Order Edit">
                                                                         <i class="fe fe-edit"></i>
                                                                     </a>
-                                                                    <a href="{{ route('admin.order-invoice', $order->id) }}"
+                                                                    <a href="{{ route('admin.order-invoice', ['id' => $order->id]) }}"
                                                                         class="btn btn-success ms-1 text-white"
                                                                         title="Order Invoice">
                                                                         <i class="fe fe-dollar-sign"></i>
                                                                     </a>
-                                                                    <a href="{{ route('admin.download-invoice', $order->id) }}"
+                                                                    <a href="{{ route('admin.download-invoice', ['id' => $order->id]) }}"
                                                                         class="btn btn-warning ms-1 text-white"
                                                                         title="Download Invoice">
                                                                         <i class="fe fe-download"></i>
                                                                     </a>
-                                                                    <a href="{{ route('admin.order-delete', $order->id) }}"
+                                                                    <a href="{{ route('admin.order-delete', ['id' => $order->id]) }}"
                                                                         class="btn btn-danger ms-1 text-white"
                                                                         title="Delete Order">
                                                                         <i class="fe fe-trash"></i>
