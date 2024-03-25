@@ -39,7 +39,8 @@
                                         <h5 class="mt-3 text-center text-success">{{ Session::get('message') }}</h5>
                                     </div>
                                     <div class="card-body">
-                                        <form action="" method="POST">
+                                        <form action="{{ route('admin.order-update', ['id' => $order->id]) }}"
+                                            method="POST">
                                             @csrf
                                             <div class="row mb-3">
                                                 <label class="col-md-3">Order Total</label>
@@ -74,9 +75,11 @@
                                                 <div class="col-md-9">
                                                     <select name="courier_id" id="" class="form-control">
                                                         <option value="">--Select Courier Info--</option>
-                                                        <option value="0">Sundarban</option>
-                                                        <option value="1">Redex</option>
-                                                        <option value="2">Stead Fast</option>
+                                                        @foreach ($couriers as $courier)
+                                                            <option value="{{ $courier->id }}"{{ $order->courier_id == $courier->id ? 'selected' : ''}}>
+                                                                {{ $courier->courier_name }}
+                                                            </option>
+                                                        @endforeach
                                                     </select>
                                                 </div>
                                             </div>

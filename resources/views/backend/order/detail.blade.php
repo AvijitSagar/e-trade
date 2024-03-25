@@ -57,11 +57,24 @@
                                         </tr>
                                         <tr>
                                             <th>Order Status</th>
-                                            <td>
+                                            <td
+                                                @if ($order->order_status == 0) class="text-black" 
+                                                @elseif($order->order_status == 1) 
+                                                    class="text-success" 
+                                                @elseif($order->order_status == 2) 
+                                                    class="text-warning" 
+                                                @elseif($order->order_status == 3) 
+                                                    class="text-danger" 
+                                                @endif
+                                            >
                                                 @if ($order->order_status == 0)
-                                                    Pending
+                                                    <b>Pending</b>
                                                 @elseif ($order->order_status == 1)
-                                                    Approved
+                                                    <b>Complete</b>
+                                                @elseif ($order->order_status == 2)
+                                                    <b>Processing</b>
+                                                @elseif ($order->order_status == 3)
+                                                    <b>Cancel</b>
                                                 @endif
                                             </td>
                                         </tr>
@@ -75,11 +88,24 @@
                                         </tr>
                                         <tr>
                                             <th>Delivery Status</th>
-                                            <td>
+                                            <td
+                                                @if ($order->delivery_status == 0) class="text-black" 
+                                                @elseif($order->delivery_status == 1) 
+                                                    class="text-success" 
+                                                @elseif($order->delivery_status == 2) 
+                                                    class="text-warning" 
+                                                @elseif($order->delivery_status == 3) 
+                                                    class="text-danger" 
+                                                @endif
+                                            >
                                                 @if ($order->delivery_status == 0)
-                                                    Pending
+                                                    <b>Pending</b>
                                                 @elseif ($order->delivery_status == 1)
-                                                    Success
+                                                    <b>Complete</b>
+                                                @elseif ($order->delivery_status == 2)
+                                                    <b>Processing</b>
+                                                @elseif ($order->delivery_status == 3)
+                                                    <b>Cancel</b>
                                                 @endif
                                             </td>
                                         </tr>
@@ -89,11 +115,24 @@
                                         </tr>
                                         <tr>
                                             <th>Payment Status</th>
-                                            <td>
+                                            <td
+                                                @if ($order->payment_status == 0) class="text-black" 
+                                                @elseif($order->payment_status == 1) 
+                                                    class="text-success" 
+                                                @elseif($order->payment_status == 2) 
+                                                    class="text-warning" 
+                                                @elseif($order->payment_status == 3) 
+                                                    class="text-danger" 
+                                                @endif
+                                            >
                                                 @if ($order->payment_status == 0)
-                                                    Pending
+                                                    <b>Pending</b>
                                                 @elseif ($order->payment_status == 1)
-                                                    Success
+                                                    <b>Complete</b>
+                                                @elseif ($order->payment_status == 2)
+                                                    <b>Processing</b>
+                                                @elseif ($order->payment_status == 3)
+                                                    <b>Cancel</b>
                                                 @endif
                                             </td>
                                         </tr>

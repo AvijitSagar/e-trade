@@ -41,7 +41,7 @@
                                     <div class="card-body">
                                         <div class="table-responsive">
                                             <table id="editable-responsive-table"
-                                                class="table editable-table table-nowrap table-bordered table-edit wp-100">
+                                                class="table table-hover editable-table table-nowrap table-bordered table-edit wp-100">
                                                 <thead>
                                                     <tr>
                                                         <th>SL</th>
@@ -64,15 +64,24 @@
                                                             <td data-field="order_date">{{ $order->order_date }}</td>
                                                             <td data-field="order_total">{{ $order->order_total }} &#2547;
                                                             </td>
-                                                            <td data-field="order_status">
+                                                            <td data-field="order_status"
+                                                                @if ($order->order_status == 0) class="text-black" 
+                                                                @elseif($order->order_status == 1) 
+                                                                    class="text-success" 
+                                                                @elseif($order->order_status == 2) 
+                                                                    class="text-warning" 
+                                                                @elseif($order->order_status == 3) 
+                                                                    class="text-danger" 
+                                                                @endif
+                                                            >
                                                                 @if ($order->order_status == 0)
-                                                                    Pending
+                                                                    <b>Pending</b>
                                                                 @elseif ($order->order_status == 1)
-                                                                    Complete
+                                                                    <b>Complete</b>
                                                                 @elseif ($order->order_status == 2)
-                                                                    Processing
+                                                                    <b>Processing</b>
                                                                 @elseif ($order->order_status == 3)
-                                                                    Cancel
+                                                                    <b>Cancel</b>
                                                                 @endif
                                                             </td>
                                                             <td>

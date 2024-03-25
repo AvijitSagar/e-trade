@@ -30,9 +30,9 @@ class CourierController extends Controller
     public function store(Request $request)
     {
         $this->validate($request, [
-            'courier_name'      => 'required',
-            'courier_email'     => 'required|email',
-            'courier_mobile'    => 'required|numeric',
+            'courier_name'      => 'required|unique:couriers,courier_name',
+            'courier_email'     => 'required|email|unique:couriers,courier_email',
+            'courier_mobile'    => 'required|numeric|unique:couriers,courier_mobile',
             'courier_cost'      => 'required|numeric',
             'courier_address'   => 'required'
         ]);
@@ -64,12 +64,12 @@ class CourierController extends Controller
     public function update(Request $request, $courier)
     {
         $this->validate($request, [
-            'courier_name'      => 'required',
-            'courier_email'     => 'required|email',
-            'courier_mobile'    => 'required|numeric',
+            'courier_name'      => 'required|unique:couriers,courier_name,' . $courier,
+            'courier_email'     => 'required|email|unique:couriers,courier_email,' . $courier,
+            'courier_mobile'    => 'required|numeric|unique:couriers,courier_mobile,' . $courier,
             'courier_cost'      => 'required|numeric',
             'courier_address'   => 'required'
-        ]);
+        ],);
         Courier::updateCourier($request, $courier);
         return redirect(route('courier.index'))->with('message', 'Courier updated successfully...!');
     }

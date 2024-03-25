@@ -94,4 +94,5 @@ Route::middleware([
     Route::get('/admin/order-invoice/{id}', [AdminOrderController::class, 'invoice'])->name('admin.order-invoice');
     Route::get('/admin/download-invoice/{id}', [AdminOrderController::class, 'download'])->name('admin.download-invoice');
     Route::get('/admin/order-delete/{id}', [AdminOrderController::class, 'delete'])->name('admin.order-delete');
+    Route::post('/admin/order-update/{id}', [AdminOrderController::class, 'update'])->name('admin.order-update');
 });
