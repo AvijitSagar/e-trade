@@ -5,6 +5,7 @@ use App\Http\Controllers\BrandController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\CheckoutController;
+use App\Http\Controllers\CourierController;
 use App\Http\Controllers\CustomerAuthController;
 use App\Http\Controllers\CustomerDashboardController;
 use App\Http\Controllers\DashboardController;
@@ -81,6 +82,8 @@ Route::middleware([
     Route::resource('brand', BrandController::class);
 
     Route::resource('product', ProductController::class);
+
+    Route::resource('courier', CourierController::class);
 
     Route::get('get-subcategory-by-category', [ProductController::class, 'getSubCategoryByCategory'])->name('get-subcategory-by-category');
     Route::get('product/update-featured-status/{id}', [ProductController::class, 'updateFeaturedStatus'])->name('product.updateFeaturedStatus');
