@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Courier;
 use App\Models\Order;
+use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Http\Request;
 
 class AdminOrderController extends Controller
@@ -41,27 +42,23 @@ class AdminOrderController extends Controller
             $this->order->order_status      = $request->order_status;
             $this->order->delivery_status   = $request->order_status;
             $this->order->payment_status    = $request->order_status;
-
         } elseif ($request->order_status == 1) {
-            
+
             $this->order->order_status      = $request->order_status;
             $this->order->delivery_status   = $request->order_status;
             $this->order->payment_status    = $request->order_status;
-
         } elseif ($request->order_status == 2) {
-            
+
             $this->order->order_status      = $request->order_status;
             $this->order->delivery_status   = $request->order_status;
             $this->order->payment_status    = $request->order_status;
             $this->order->delivery_address  = $request->delivery_address;
             $this->order->courier_id        = $request->courier_id;
-
         } elseif ($request->order_status == 3) {
-            
+
             $this->order->order_status      = $request->order_status;
             $this->order->delivery_status   = $request->order_status;
             $this->order->payment_status    = $request->order_status;
-
         }
         $this->order->save();
         return redirect(route('order.index'))->with('message', 'Order info updated successfully...!');
@@ -76,6 +73,11 @@ class AdminOrderController extends Controller
 
     public function download($id)
     {
+        $data = [
+            'data' => 'all the best'
+        ];
+        $pdf = Pdf::loadView('backend.order.download', $data);
+        return $pdf->download('invoice.pdf');
         return view('backend.order.download', [
             'order' => Order::find($id)
         ]);
