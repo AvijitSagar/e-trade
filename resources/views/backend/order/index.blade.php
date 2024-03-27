@@ -71,9 +71,7 @@
                                                                 @elseif($order->order_status == 2) 
                                                                     class="text-warning" 
                                                                 @elseif($order->order_status == 3) 
-                                                                    class="text-danger" 
-                                                                @endif
-                                                            >
+                                                                    class="text-danger" @endif>
                                                                 @if ($order->order_status == 0)
                                                                     <b>Pending</b>
                                                                 @elseif ($order->order_status == 1)
@@ -92,22 +90,23 @@
                                                                         <i class="fe fe-book-open"></i>
                                                                     </a>
                                                                     <a href="{{ route('admin.order-edit', ['id' => $order->id]) }}"
-                                                                        class="btn btn-primary ms-1 text-white"
+                                                                        class="btn btn-primary ms-1 text-white {{ $order->order_status == 1 ? 'disabled' : '' }}"
                                                                         title="Order Edit">
                                                                         <i class="fe fe-edit"></i>
                                                                     </a>
                                                                     <a href="{{ route('admin.order-invoice', ['id' => $order->id]) }}"
-                                                                        class="btn btn-success ms-1 text-white"
+                                                                        class="btn btn-success ms-1 text-white {{ $order->order_status == 3 ? 'disabled' : '' }}"
                                                                         title="Order Invoice">
                                                                         <i class="fe fe-dollar-sign"></i>
                                                                     </a>
                                                                     <a href="{{ route('admin.download-invoice', ['id' => $order->id]) }}"
-                                                                        class="btn btn-warning ms-1 text-white"
+                                                                        target="_blank"
+                                                                        class="btn btn-warning ms-1 text-white {{ $order->order_status == 3 ? 'disabled' : '' }}"
                                                                         title="Download Invoice">
                                                                         <i class="fe fe-download"></i>
                                                                     </a>
                                                                     <a href="{{ route('admin.order-delete', ['id' => $order->id]) }}"
-                                                                        class="btn btn-danger ms-1 text-white"
+                                                                        class="btn btn-danger ms-1 text-white {{ $order->order_status == 3 ? '' : 'disabled' }}"
                                                                         title="Delete Order">
                                                                         <i class="fe fe-trash"></i>
                                                                     </a>

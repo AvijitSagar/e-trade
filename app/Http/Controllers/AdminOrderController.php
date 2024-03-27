@@ -71,16 +71,13 @@ class AdminOrderController extends Controller
         ]);
     }
 
+    // download a dom pdf package niye kaj kora hoyeche 
     public function download($id)
     {
-        $data = [
-            'data' => 'all the best'
-        ];
-        $pdf = Pdf::loadView('backend.order.download', $data);
-        return $pdf->download('invoice.pdf');
-        return view('backend.order.download', [
+        $pdf = Pdf::loadView('backend.order.download', [
             'order' => Order::find($id)
         ]);
+        return $pdf->stream($id . '-invoice.pdf');
     }
 
     public function delete($id)
